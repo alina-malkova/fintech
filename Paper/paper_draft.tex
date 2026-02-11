@@ -22,7 +22,7 @@
 \maketitle
 
 \begin{abstract}
-Bank branch closures disproportionately affect low-to-moderate income communities, reducing access to credit for small business formation. This paper examines whether fintech lending can mitigate these adverse effects. Using panel data from the Community Advantage Panel Survey (CAPS) merged with county-level fintech penetration data, I find that bank branch closures significantly reduce transitions to self-employment. However, in counties with higher fintech mortgage market share, this negative effect is substantially attenuated. A one-standard-deviation increase in fintech penetration offsets approximately 60\% of the negative impact of branch closures on incorporated self-employment. These findings suggest that fintech lending serves as a partial substitute for traditional banking services in underserved communities, with implications for financial inclusion policy and the regulation of alternative lenders.
+Bank branch closures disproportionately affect low-to-moderate income communities, reducing access to credit for small business formation. This paper examines whether fintech lending can mitigate these adverse effects. Using panel data from the Community Advantage Panel Survey (CAPS) merged with county-level fintech penetration data, I find that bank branch closures significantly reduce transitions to self-employment. In the baseline specification, counties with higher fintech market share show attenuated closure effects. However, the results are sensitive to identification strategy: when controlling for county fixed effects or county $\times$ year fixed effects, the interaction coefficient shrinks and loses significance. A placebo test finds no pre-trend, providing some reassurance. The most cautious interpretation is that fintech may partially mitigate closure effects, but the magnitude is uncertain due to potential confounding from time-varying county characteristics. These findings highlight both the promise and the identification challenges in studying fintech's role in financial inclusion.
 
 \medskip
 \noindent\textbf{Keywords:} Fintech, Bank Branch Closures, Self-Employment, Financial Inclusion, Alternative Credit
@@ -204,19 +204,66 @@ Table \ref{tab:table5} examines unincorporated self-employment. Column 1 shows t
 Interestingly, the branch density and social capital interactions are larger in magnitude for unincorporated self-employment, though still not statistically significant. This may reflect different credit needs: incorporated businesses may rely more on formal credit markets where fintech operates, while unincorporated businesses may depend more on informal networks and local relationships.
 
 
+\subsection{Robustness and Identification}
+
+A key concern with the main results is that fintech penetration is not randomly assigned. Counties with higher fintech market share may differ in time-varying ways---faster-growing economies, more tech-savvy populations, or other characteristics---that independently affect self-employment resilience after branch closures. Individual and year fixed effects do not address county-level time-varying confounders.
+
+Table \ref{tab:robust} presents robustness checks addressing this concern. Column 1 reproduces the baseline specification. Column 2 adds county fixed effects, controlling for time-invariant county heterogeneity. The closure-fintech interaction coefficient drops from 0.82 to 0.28 and loses statistical significance. Column 3 includes county $\times$ year fixed effects, the most demanding specification that absorbs all county-level time variation. The interaction coefficient is 0.46 but remains insignificant.
+
+These results suggest caution in interpreting the main findings. The baseline specification may overstate the mitigating effect of fintech if high-fintech counties also experienced other favorable trends during 2010-2017.
+
+However, a placebo test provides some reassurance. I assign each observation its county's \textit{future} fintech penetration (2010-2012 average) and test whether this predicts differential closure effects in the \textit{pre-fintech} period (2003-2009). If the main result reflected pre-existing county differences, we would expect areas that later adopted fintech to already show attenuated closure effects. The placebo interaction coefficient is -0.72 (p = 0.25), suggesting no pre-trend. Areas that would later have high fintech did not already exhibit differential responses to closures before fintech existed.
+
+The pattern of results---significant in the baseline, attenuated but positive with county FE, and no pre-trend in the placebo---is consistent with fintech providing some mitigation, though the magnitude is uncertain. The most conservative interpretation is that the true effect lies between zero and the baseline estimate of 0.82, with considerable uncertainty.
+
+
+\begin{table}[H]
+\centering
+\caption{Identification Robustness}
+\label{tab:robust}
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & Baseline & +County FE & County$\times$Year FE \\
+\midrule
+Closure (ZIP) & -0.0420** & -0.0178 & -0.0198 \\
+ & (0.0165) & (0.0244) & (0.0310) \\
+Fintech Share & -0.8286 & -0.8239 & --- \\
+ & (0.8620) & (0.9902) &  \\
+Closure $\times$ Fintech & 0.8224** & 0.2787 & 0.4591 \\
+ & (0.3617) & (0.5537) & (0.7717) \\
+\midrule
+Observations & 484 & 474 & 379 \\
+Individual FE & Yes & Yes & Yes \\
+Year FE & Yes & Yes & Absorbed \\
+County FE & No & Yes & Absorbed \\
+County $\times$ Year FE & No & No & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} Sample restricted to 2010-2017. Dependent variable is transition to incorporated self-employment. Standard errors clustered by county. Fintech share main effect absorbed by county $\times$ year FE in column 3. * p<0.10, ** p<0.05, *** p<0.01.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
 \section{Discussion and Conclusion}
 
-This paper provides evidence that fintech lending partially mitigates the negative effects of bank branch closures on self-employment. Using individual-level panel data on low-to-moderate income borrowers combined with county-level fintech penetration measures, I find that closures significantly reduce transitions to incorporated self-employment, but this effect is attenuated in areas with higher fintech market share.
+This paper investigates whether fintech lending mitigates the negative effects of bank branch closures on self-employment. The baseline results show a significant positive interaction: closures reduce incorporated self-employment by 4.2 percentage points, but this effect is attenuated in counties with higher fintech market share ($\beta$ = 0.82, p $<$ 0.05).
 
-Several caveats apply. First, the analysis is limited to 2010-2017 when fintech data are available, and the fintech market has evolved substantially since then. Second, the CAPS sample of low-to-moderate income homeowners may not generalize to the broader population. Third, I observe fintech mortgage market share but cannot directly measure fintech small business lending, which would be more directly relevant for self-employment decisions.
+However, the identification strategy has important limitations. Fintech penetration is not randomly assigned, and counties with higher fintech may differ in time-varying ways that independently affect self-employment resilience. When I add county fixed effects or county $\times$ year fixed effects, the interaction coefficient shrinks substantially (to 0.28 and 0.46, respectively) and loses statistical significance. This suggests the baseline may overstate the true effect.
 
-Despite these limitations, the findings have important implications. For policymakers concerned about the effects of banking consolidation on underserved communities, fintech lending appears to provide a partial market-based solution. However, the mitigation is incomplete---even at high fintech penetration, closure effects are not fully offset.
+Two pieces of evidence provide partial reassurance. First, a placebo test finds no pre-trend: areas that would later have high fintech showed no differential response to closures in 2003-2009, before fintech existed. Second, interactions with broadband access and social capital are not significant, suggesting the pattern is specific to fintech rather than general digital infrastructure.
 
-This suggests a role for policy interventions that facilitate alternative lending while maintaining consumer protections. The CFPB's Section 1033 open banking rule, which requires data sharing to enhance competition, may help in this regard by allowing fintech lenders to better assess borrowers' creditworthiness. Community development financial institutions (CDFIs) and credit unions may also help fill gaps that remain after both traditional bank and fintech channels are exhausted.
+The most honest interpretation is that the true mitigating effect likely lies between zero and the baseline estimate, with considerable uncertainty. The evidence is consistent with fintech providing some benefit, but is not conclusive.
 
-For the fintech industry, these results support claims that alternative lenders serve borrowers underserved by traditional banks. At the same time, the findings highlight that fintech lending is not a panacea---significant negative effects of closure remain even in high-fintech areas.
+Additional caveats apply. The analysis is limited to 2010-2017 when fintech data are available. The CAPS sample of low-to-moderate income homeowners may not generalize. I observe fintech mortgage market share but cannot measure fintech small business lending directly. Sample sizes are small (N $\approx$ 484), limiting power for demanding specifications.
 
-Future research should examine whether these patterns persist as fintech lending matures and expands into small business credit. Understanding the types of borrowers and businesses most affected by both closures and fintech availability would help target policy interventions more effectively.
+For policy, these findings suggest fintech \textit{may} partially offset banking consolidation effects, but should not substitute for direct interventions to maintain credit access. Even optimistically, fintech does not fully mitigate closure harms.
+
+Future research should address identification more directly through instrumental variables (using pre-period broadband or distance to fintech headquarters), event studies exploiting staggered fintech rollout, or direct measurement of fintech small business lending. Understanding whether and how fintech expands credit access remains an important open question.
 
 
 \newpage
