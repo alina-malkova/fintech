@@ -43,11 +43,11 @@ This paper provides the first direct evidence on whether fintech lending mitigat
 
 My identification strategy builds on \citet{malkova2024}, who show that bank branch closures induced by merger-related consolidation reduce transitions to incorporated self-employment among affected individuals. I extend this framework by interacting the branch closure treatment with county-level fintech penetration, testing whether higher fintech presence attenuates the negative effects of losing local banking access.
 
-The main findings can be summarized as follows. First, I confirm that bank branch closures significantly reduce self-employment transitions in the CAPS sample. A closure in an individual's ZIP code reduces the probability of transitioning to incorporated self-employment by approximately 4.2 percentage points (p < 0.05) in the 2010-2017 period when fintech data are available.
+The main findings can be summarized as follows. First, in the 2010-2014 period when fintech data are available, bank branch closures significantly reduce self-employment transitions. A closure in an individual's ZIP code reduces the probability of transitioning to incorporated self-employment by approximately 1.2 percentage points (p $<$ 0.05). Notably, this negative effect is specific to the fintech sample period; in 2003-2009, the closure coefficient is positive (though insignificant), highlighting important temporal heterogeneity.
 
-Second, and most importantly, this negative effect is substantially mitigated in counties with higher fintech penetration. The interaction between branch closures and fintech market share is positive and statistically significant ($\beta$ = 0.82, p < 0.05). At mean fintech penetration (4\%), a branch closure reduces incorporated self-employment transitions by 3.9 percentage points. At one standard deviation above the mean (6.4\%), the effect is reduced to 1.9 percentage points---a mitigation of approximately 50\%.
+Second, the baseline negative effect appears attenuated in counties with higher fintech penetration. The interaction between closures and fintech market share is positive ($\beta$ = 0.82, p $<$ 0.05). At mean fintech penetration (4.0\%), the net closure effect is approximately -0.9 percentage points. At fintech penetration of 5.1\%, the negative effect is fully offset.
 
-Third, I find that the mitigating effect is specific to fintech lending rather than general digital infrastructure. Interactions with broadband access and social capital measures (economic connectedness from the Social Capital Atlas) do not significantly attenuate closure effects. This suggests that the availability of alternative lending channels, rather than simply digital connectivity, drives the results.
+However, these results are fragile. When I add county fixed effects to control for time-invariant county characteristics, the interaction coefficient drops from 0.82 to 0.28 and loses significance. In a horse-race specification including fintech, broadband, and social capital interactions simultaneously, none of the interactions achieves significance. The small sample size (N = 484, representing only 147 individuals across 59 counties) limits statistical power and generalizability.
 
 These findings contribute to several literatures. First, I add to the growing body of work on fintech lending and financial inclusion \citep{buchak2018, fuster2019, jagtiani2019}. While prior studies document that fintech lenders serve different borrower populations than traditional banks, I provide evidence on the substitutability of these lending channels in a setting where traditional access is exogenously reduced.
 
@@ -113,9 +113,11 @@ The closure variable (\textit{closure\_zip}) measures the change in bank branche
 
 County-level fintech mortgage market share comes from \citet{fuster2019}, who classify mortgage lenders in Home Mortgage Disclosure Act (HMDA) data as fintech based on their lending technology. Fintech lenders are defined as those that primarily originate loans through online channels and use automated underwriting.
 
-I merge this data to CAPS using ZIP-to-county crosswalks from the Census Bureau. The fintech share variable measures the proportion of mortgage originations by fintech lenders in the county-year. This data is available for 2010-2017, restricting the fintech analysis to this period.
+I merge this data to CAPS using ZIP-to-county crosswalks from the Census Bureau. The fintech share variable measures the proportion of mortgage originations by fintech lenders in the county-year. Importantly, CAPS data extend only through 2014, so the effective analysis period is 2010-2014 (not 2010-2017 as in the full Fuster et al. data).
 
 Mean fintech share in the sample is 4.0\%, with a standard deviation of 2.4\%. Fintech penetration varies substantially across counties, from less than 0.2\% to over 25\% in some areas.
+
+\textbf{Measurement limitation}: The fintech variable captures \textit{mortgage} market share, not small business lending. The implicit mechanism connecting mortgage fintech to self-employment is that fintech-enabled home equity access may fund business formation. Home equity is a primary source of startup capital for small businesses, particularly for low-to-moderate income entrepreneurs who lack access to traditional business credit. However, this link is indirect, and I cannot directly test whether individuals use mortgage refinancing or home equity for business purposes. Ideally, one would measure fintech small business lending directly (e.g., from platforms like OnDeck, Kabbage, or LendingClub's small business products), but such data are not available at the county-year level for this period.
 
 \subsection{Geographic Controls}
 
@@ -175,15 +177,24 @@ Columns 2-3 add branch density and its interaction with closures. The interactio
 
 \subsection{Fintech Penetration and Self-Employment}
 
-Table \ref{tab:table3} presents the key results for the fintech interaction, restricting to 2010-2017 when fintech data are available.
+Table \ref{tab:table3} presents the key results for the fintech interaction, restricting to 2010-2014 when both CAPS and fintech data are available.
+
+\textbf{Important caveat on sign flip}: The closure coefficient is positive (though insignificant) in Table 2 but negative (significant) in Table 3. This sign change is \textit{not} driven by adding fintech controls---it reflects the different time periods. Running the baseline specification separately by period (without fintech) shows:
+\begin{itemize}
+    \item 2003-2009: Closure coefficient = +0.016 (SE = 0.011, p = 0.17)
+    \item 2010-2014: Closure coefficient = -0.012 (SE = 0.006, p = 0.04)
+\end{itemize}
+The negative closure effect is specific to the 2010-2014 period. This could reflect differential macroeconomic conditions (the financial crisis recovery), changes in the nature of closures, or compositional shifts in the sample. This temporal heterogeneity complicates interpretation of the fintech interaction, which is identified only in the period where closures already have negative effects.
 
 Column 1 shows that in this period, branch closures significantly reduce incorporated self-employment (coefficient = -0.013, p = 0.026). The fintech share coefficient is negative but not significant.
 
 Column 2 adds the closure-fintech interaction. The main closure effect becomes larger in magnitude (-0.042, p = 0.013), while the interaction term is positive and significant (0.82, p = 0.027). This pattern is consistent with Hypothesis 2: closures reduce self-employment, but this effect is attenuated in high-fintech areas.
 
-To interpret the magnitudes: at mean fintech share (4\%), the net closure effect is $-0.042 + 0.82 \times 0.04 = -0.009$, or about 0.9 percentage points. At one standard deviation above the mean (6.4\%), the effect is $-0.042 + 0.82 \times 0.064 = +0.01$, essentially zero. The interaction coefficient implies that a one-standard-deviation increase in fintech penetration (2.4 percentage points) offsets about half of the baseline closure effect.
+To interpret the magnitudes: at mean fintech share (4.0\%), the net closure effect is $-0.042 + 0.82 \times 0.040 = -0.009$, or about 0.9 percentage points. The fintech level that fully offsets the closure effect is $0.042 / 0.82 = 0.051$, or 5.1\%---slightly above the mean but well within the observed range.
 
-Column 3 adds branch density as a control, and the results are robust. The closure-fintech interaction remains significant at the 5\% level.
+Column 3 adds branch density as a control, and the results are similar. However, as discussed in Section 5.5, these results are sensitive to specification and should be interpreted cautiously.
+
+\textbf{Sample size concern}: The fintech analysis sample contains only 484 observations (after dropping singletons in the fixed effects estimation), representing 147 unique individuals across 59 counties in 10 merger groups. This small sample limits statistical power and raises concerns about generalizability. The dramatic reduction from the full CAPS sample (N = 36,984) reflects both the time restriction (fintech data available only 2010-2014) and the demanding fixed effects structure.
 
 \subsection{Alternative Mechanisms}
 
@@ -303,26 +314,26 @@ Broadband Access (\%) & 80.07 & 9.20 & 0 & 100 \\
 \caption{Banking Access and Incorporated Self-Employment}
 \label{tab:table2}
 \begin{threeparttable}
-\begin{tabular}{lcccc}
+\begin{tabular}{lccc}
 \toprule
- & (1) & (2) & (3) & (4) \\
- & Baseline & +Branches & +Interaction & Banking Desert \\
+ & (1) & (2) & (3) \\
+ & Baseline & +Branches & +Interaction \\
 \midrule
-Closure (ZIP) & 0.0053 & 0.0051 & -0.0019 & 0.0053 \\
- & (0.0057) & (0.0057) & (0.0114) & (0.0057) \\
-Branches per 10k &  & -0.0091 & -0.0091 &  \\
- &  & (0.0140) & (0.0140) &  \\
-Closure $\times$ Branches &  &  & 0.0032 &  \\
- &  &  & (0.0053) &  \\
+Closure (ZIP) & 0.0053 & 0.0051 & -0.0019 \\
+ & (0.0057) & (0.0057) & (0.0114) \\
+Branches per 10k &  & -0.0091 & -0.0091 \\
+ &  & (0.0140) & (0.0140) \\
+Closure $\times$ Branches &  &  & 0.0032 \\
+ &  &  & (0.0053) \\
 \midrule
-Observations & 1,449 & 1,449 & 1,449 & 1,449 \\
-Individual FE & Yes & Yes & Yes & Yes \\
-Year FE & Yes & Yes & Yes & Yes \\
+Observations & 1,449 & 1,449 & 1,449 \\
+Individual FE & Yes & Yes & Yes \\
+Year FE & Yes & Yes & Yes \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
 \small
-\item \textit{Notes:} Dependent variable is indicator for transitioning to incorporated self-employment. Standard errors clustered by county in parentheses. * p<0.10, ** p<0.05, *** p<0.01.
+\item \textit{Notes:} Dependent variable is indicator for transitioning to incorporated self-employment. Standard errors clustered by county in parentheses. Banking desert specification omitted due to collinearity with individual FE (insufficient within-group variation). * p<0.10, ** p<0.05, *** p<0.01.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

@@ -1,0 +1,156 @@
+% Appendix: Sample Diagnostics and Robustness
+% To be included in paper_draft.tex
+
+\section*{Appendix A: Sample Construction and Diagnostics}
+
+\subsection*{A.1 Sample Size Explanation}
+
+Table \ref{tab:sample} documents the sample construction. The dramatic reduction from the full CAPS sample (N = 36,984) to the fintech analysis sample (N = 484) reflects three factors:
+
+\begin{enumerate}
+    \item \textbf{Fintech data availability}: The Fuster et al. (2019) fintech classification covers 2010-2017, but CAPS data in our merged file only extends through 2014. This restricts the fintech analysis to 2010-2014 (N = 13,027 with non-missing data).
+
+    \item \textbf{Merger fixed effects}: The identification strategy uses mergerID fixed effects, which absorb substantial variation. Only individuals observed in multiple years within the same merger group contribute to identification.
+
+    \item \textbf{Singleton observations}: The reghdfe estimator drops singleton observations (individuals observed only once within their fixed effect group), further reducing the sample.
+\end{enumerate}
+
+\begin{table}[h]
+\centering
+\caption{Sample Construction}
+\label{tab:sample}
+\begin{tabular}{lc}
+\toprule
+Step & Observations \\
+\midrule
+Full CAPS sample & 36,984 \\
+Non-missing outcome (anytoise) & 36,493 \\
+Restrict to 2010-2014 (CAPS-fintech overlap) & 13,178 \\
+Non-missing fintech share & 13,027 \\
+After mergerID FE (singletons dropped) & \textbf{484} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The final analysis sample contains 147 unique individuals across 59 counties and 10 merger groups. Of these 484 observations, 1,402 (from the pre-FE sample) are in treated ZIP codes, and 1,876 experienced some closure.
+
+
+\subsection*{A.2 Sign Flip Across Time Periods}
+
+A critical concern is the sign flip in the closure coefficient between Tables 2 and 3. Table \ref{tab:yearperiod} shows this is driven by the time period, not by adding fintech controls.
+
+\begin{table}[h]
+\centering
+\caption{Closure Effect by Time Period}
+\label{tab:yearperiod}
+\begin{tabular}{lccc}
+\toprule
+Period & Coefficient & Std. Error & p-value \\
+\midrule
+2003-2009 (pre-fintech) & +0.016 & 0.011 & 0.169 \\
+2010-2014 (fintech period) & -0.012 & 0.006 & 0.041 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} Both regressions include mergerID and year FE. No fintech controls.
+\end{tablenotes}
+\end{table}
+
+The closure effect is positive (though insignificant) in 2003-2009 and negative (significant) in 2010-2014. This pattern could reflect:
+
+\begin{itemize}
+    \item Differential macroeconomic conditions (the 2008 financial crisis and recovery)
+    \item Changes in the nature of branch closures over time
+    \item Compositional changes in the CAPS sample
+    \item True heterogeneity in closure effects across periods
+\end{itemize}
+
+This finding raises important questions about whether the fintech interaction captures a causal effect or simply period-specific patterns. The baseline closure effect in the fintech period is negative \textit{even without controlling for fintech}, which complicates interpretation of the interaction term.
+
+
+\subsection*{A.3 Horse-Race Specification}
+
+Table \ref{tab:horserace} presents all three interaction terms simultaneously. When included together, none achieves statistical significance at conventional levels.
+
+\begin{table}[h]
+\centering
+\caption{Horse-Race: All Interactions Simultaneously}
+\label{tab:horserace}
+\begin{tabular}{lcc}
+\toprule
+Variable & Coefficient & Std. Error \\
+\midrule
+Closure (ZIP) & 0.072 & (0.070) \\
+Fintech Share & -0.728 & (0.844) \\
+Closure $\times$ Fintech & 1.106 & (0.697) \\
+Broadband Access (\%) & -0.001 & (0.001) \\
+Closure $\times$ Broadband & -0.002 & (0.002) \\
+Closure $\times$ Econ. Connect. & 0.008 & (0.109) \\
+\midrule
+Observations & 473 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} Includes mergerID and year FE. SE clustered by county. * p<0.10.
+\end{tablenotes}
+\end{table}
+
+The fintech interaction coefficient (1.11) is larger than in the baseline specification (0.82) but with a larger standard error, suggesting that the effect is not robust to controlling for other county characteristics.
+
+
+\subsection*{A.4 Precise Mitigation Calculation}
+
+Using the baseline specification coefficients:
+\begin{itemize}
+    \item $\beta_{\text{closure}}$ = -0.042
+    \item $\beta_{\text{closure} \times \text{fintech}}$ = 0.822
+\end{itemize}
+
+The net closure effect at different fintech levels:
+\begin{align*}
+\text{At mean fintech (4.0\%):} & \quad -0.042 + 0.822 \times 0.040 = -0.009 \\
+\text{At mean + 1 SD (6.4\%):} & \quad -0.042 + 0.822 \times 0.064 = +0.011
+\end{align*}
+
+The fintech level that fully offsets the closure effect:
+\begin{equation*}
+\text{Fintech}^* = \frac{0.042}{0.822} = 0.051 \text{ (5.1\%)}
+\end{equation*}
+
+This is slightly above the mean (4.0\%) but well within the observed range (max = 25.4\%). At mean fintech, closures reduce self-employment transitions by 0.9 percentage points. Moving from mean to mean + 1 SD fintech fully offsets this effect and slightly reverses it.
+
+\textbf{Important caveat}: This calculation assumes the interaction effect is causal, which the robustness checks call into question.
+
+
+\subsection*{A.5 Table 2, Column 4 Explanation}
+
+The banking desert variable and interaction were dropped due to collinearity with mergerID fixed effects. Within merger groups, there is essentially no variation in banking desert status---individuals in a given merger tend to be in similar geographic areas. This makes it impossible to identify the banking desert effect separately from the merger fixed effects.
+
+Alternative approaches that might address this:
+\begin{itemize}
+    \item County-level analysis without individual FE
+    \item Cross-sectional analysis comparing individuals across mergers
+    \item Using continuous branch density instead of the binary indicator
+\end{itemize}
+
+
+\subsection*{A.6 Fintech as Mortgage Lending Proxy}
+
+The fintech measure captures mortgage market share, not small business lending. The implicit mechanism is:
+
+\begin{enumerate}
+    \item Fintech mortgage lenders provide home equity access
+    \item Home equity is a primary source of small business startup capital
+    \item Areas with fintech mortgage access may therefore have alternative paths to business financing
+\end{enumerate}
+
+However, this link is indirect. Direct tests would require data on:
+\begin{itemize}
+    \item Fintech small business lending (e.g., OnDeck, Kabbage, LendingClub)
+    \item Individual use of home equity for business purposes
+    \item Alternative credit channels by county
+\end{itemize}
+
+The HMDA data used for fintech classification does not cover small business lending. Future research should examine fintech small business lending data (e.g., from PPP loan records or SBA data) to test this mechanism more directly.
