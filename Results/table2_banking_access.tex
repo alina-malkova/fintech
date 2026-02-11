@@ -1,0 +1,29 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Banking Access and Incorporated Self-Employment}
+\begin{tabular}{l*{4}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+            &\multicolumn{1}{c}{Baseline}&\multicolumn{1}{c}{+Branches}&\multicolumn{1}{c}{+Interaction}&\multicolumn{1}{c}{Banking Desert}\\
+\hline
+closure\_zip &      0.0053         &      0.0051         &     -0.0019         &      0.0053         \\
+            &    (0.0057)         &    (0.0057)         &    (0.0114)         &    (0.0057)         \\
+[1em]
+branches\_per\_10k&                     &     -0.0091         &     -0.0091         &                     \\
+            &                     &    (0.0140)         &    (0.0140)         &                     \\
+[1em]
+closure\_x\_branches&                     &                     &      0.0032         &                     \\
+            &                     &                     &    (0.0053)         &                     \\
+[1em]
+banking\_desert&                     &                     &                     &      0.0000         \\
+            &                     &                     &                     &         (.)         \\
+[1em]
+closure\_x\_banking\_desert&                     &                     &                     &      0.0000         \\
+            &                     &                     &                     &         (.)         \\
+\hline
+\(N\)       &        1449         &        1449         &        1449         &        1449         \\
+\hline\hline
+\multicolumn{5}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{5}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{table}

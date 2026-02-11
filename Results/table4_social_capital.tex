@@ -1,0 +1,29 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Social Capital and Digital Access}
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+            &\multicolumn{1}{c}{Econ Connect}&\multicolumn{1}{c}{Broadband}&\multicolumn{1}{c}{Combined}\\
+\hline
+closure\_zip &     -0.0036         &      0.0173         &      0.0431         \\
+            &    (0.0152)         &    (0.0280)         &    (0.0397)         \\
+[1em]
+economic\_connectedness&      0.0742         &                     &      0.0756         \\
+            &    (0.0658)         &                     &    (0.0816)         \\
+[1em]
+closure\_x\_econ\_connect&      0.0117         &                     &      0.0354         \\
+            &    (0.0224)         &                     &    (0.0447)         \\
+[1em]
+pct\_broadband&                     &      0.0005         &     -0.0000         \\
+            &                     &    (0.0008)         &    (0.0008)         \\
+[1em]
+closure\_x\_broadband&                     &     -0.0001         &     -0.0008         \\
+            &                     &    (0.0003)         &    (0.0008)         \\
+\hline
+\(N\)       &        1418         &        1447         &        1418         \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{4}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{table}

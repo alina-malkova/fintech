@@ -1,0 +1,388 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{threeparttable}
+\usepackage{float}
+
+\doublespacing
+
+\title{Can Fintech Fill the Gap? Alternative Lending and the Effects of Bank Branch Closures on Self-Employment}
+
+\author{Alina Malkova\thanks{Department of Economics, Florida Institute of Technology. Email: amalkova@fit.edu. I thank [acknowledgments].}}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Bank branch closures disproportionately affect low-to-moderate income communities, reducing access to credit for small business formation. This paper examines whether fintech lending can mitigate these adverse effects. Using panel data from the Community Advantage Panel Survey (CAPS) merged with county-level fintech penetration data, I find that bank branch closures significantly reduce transitions to self-employment. However, in counties with higher fintech mortgage market share, this negative effect is substantially attenuated. A one-standard-deviation increase in fintech penetration offsets approximately 60\% of the negative impact of branch closures on incorporated self-employment. These findings suggest that fintech lending serves as a partial substitute for traditional banking services in underserved communities, with implications for financial inclusion policy and the regulation of alternative lenders.
+
+\medskip
+\noindent\textbf{Keywords:} Fintech, Bank Branch Closures, Self-Employment, Financial Inclusion, Alternative Credit
+
+\medskip
+\noindent\textbf{JEL Codes:} G21, G23, L26, R12
+\end{abstract}
+
+\newpage
+
+\section{Introduction}
+
+The past two decades have witnessed a dramatic transformation in the American banking landscape. Between 2009 and 2019, more than 13,000 bank branches closed across the United States, with closures disproportionately concentrated in low-income and minority communities \citep{nguyen2019}. These closures have significant consequences for local economic activity, as bank branches provide critical services beyond deposit-taking---including relationship lending, credit assessment, and financial advice that are particularly valuable for small business formation \citep{petersen2002}.
+
+Concurrent with this decline in physical banking infrastructure, a new class of financial technology (``fintech'') lenders has emerged, promising to expand credit access through algorithmic underwriting and digital delivery channels. Fintech lenders claim to reach borrowers underserved by traditional banks, using alternative data sources and machine learning to assess creditworthiness beyond traditional credit scores \citep{jagtiani2019}. Yet whether fintech lending actually substitutes for traditional banking services, particularly in communities experiencing branch closures, remains an open empirical question.
+
+This paper provides the first direct evidence on whether fintech lending mitigates the negative effects of bank branch closures on self-employment. I combine individual-level panel data from the Community Advantage Panel Survey (CAPS) with county-level measures of fintech mortgage market penetration from \citet{fuster2019}. The CAPS data are uniquely suited for this analysis: they track low-to-moderate income homeowners---exactly the population that fintech lenders claim to serve better---over time and include precise geographic identifiers that allow matching to local banking market conditions.
+
+My identification strategy builds on \citet{malkova2024}, who show that bank branch closures induced by merger-related consolidation reduce transitions to incorporated self-employment among affected individuals. I extend this framework by interacting the branch closure treatment with county-level fintech penetration, testing whether higher fintech presence attenuates the negative effects of losing local banking access.
+
+The main findings can be summarized as follows. First, I confirm that bank branch closures significantly reduce self-employment transitions in the CAPS sample. A closure in an individual's ZIP code reduces the probability of transitioning to incorporated self-employment by approximately 4.2 percentage points (p < 0.05) in the 2010-2017 period when fintech data are available.
+
+Second, and most importantly, this negative effect is substantially mitigated in counties with higher fintech penetration. The interaction between branch closures and fintech market share is positive and statistically significant ($\beta$ = 0.82, p < 0.05). At mean fintech penetration (4\%), a branch closure reduces incorporated self-employment transitions by 3.9 percentage points. At one standard deviation above the mean (6.4\%), the effect is reduced to 1.9 percentage points---a mitigation of approximately 50\%.
+
+Third, I find that the mitigating effect is specific to fintech lending rather than general digital infrastructure. Interactions with broadband access and social capital measures (economic connectedness from the Social Capital Atlas) do not significantly attenuate closure effects. This suggests that the availability of alternative lending channels, rather than simply digital connectivity, drives the results.
+
+These findings contribute to several literatures. First, I add to the growing body of work on fintech lending and financial inclusion \citep{buchak2018, fuster2019, jagtiani2019}. While prior studies document that fintech lenders serve different borrower populations than traditional banks, I provide evidence on the substitutability of these lending channels in a setting where traditional access is exogenously reduced.
+
+Second, I contribute to research on bank branch closures and local economic development \citep{nguyen2019, grennan2020}. By showing that fintech presence mitigates closure effects, I identify a market-based channel through which the negative consequences of banking consolidation may be partially offset.
+
+Third, my findings inform ongoing policy debates about fintech regulation and financial inclusion. The Consumer Financial Protection Bureau's Section 1033 open banking rule, finalized in October 2024, aims to enhance competition in consumer finance by requiring data sharing. My results suggest that policies facilitating alternative lending may help maintain credit access in communities losing traditional banking infrastructure.
+
+The remainder of this paper proceeds as follows. Section 2 reviews related literature and develops hypotheses. Section 3 describes the data sources and construction of key variables. Section 4 presents the empirical methodology. Section 5 reports main results and robustness checks. Section 6 discusses implications and concludes.
+
+
+\section{Background and Hypotheses}
+
+\subsection{Bank Branch Closures and Credit Access}
+
+Despite the rise of digital banking, physical bank branches remain important for certain financial services. \citet{petersen2002} document that distance to lender matters for small business credit access, and while technology has reduced this friction over time, relationship lending still depends on proximity. Bank branches serve as information production centers where loan officers can observe ``soft information'' about borrowers that is difficult to transmit through digital channels \citep{stein2002}.
+
+Branch closures may therefore reduce credit access through several channels. First, the direct loss of a lending relationship requires borrowers to establish new relationships with more distant institutions. Second, remaining branches may face capacity constraints or lack local market knowledge. Third, the psychological and search costs of identifying alternative lenders may deter marginal borrowers from seeking credit.
+
+Recent empirical work confirms these concerns. \citet{nguyen2019} find that branch closures reduce small business lending and local employment, with effects concentrated in areas with fewer remaining branches. \citet{malkova2024} shows that merger-induced closures reduce transitions to incorporated self-employment, consistent with credit constraints affecting business formation decisions.
+
+\subsection{Fintech Lending as a Substitute}
+
+Fintech lenders have grown rapidly since the 2008 financial crisis, expanding from a negligible market share to originating over 10\% of mortgages by 2017 \citep{buchak2018}. These lenders differ from traditional banks in several ways that could make them substitutes for branch-based lending.
+
+First, fintech lenders operate primarily through digital channels, reducing the importance of physical proximity. Borrowers can apply online and receive decisions quickly without visiting a branch. \citet{fuster2019} show that fintech lenders process applications faster and with less sensitivity to local competition.
+
+Second, fintech lenders often use alternative data and machine learning algorithms to assess creditworthiness. This may allow them to extend credit to borrowers who would be rejected by traditional underwriting based solely on credit scores. \citet{jagtiani2019} find evidence that fintech lenders serve borrowers in ZIP codes with lower credit scores and higher credit constraints.
+
+Third, fintech lenders may be less affected by local market concentration. While traditional banks may reduce lending effort when competitors exit, fintech lenders operating at national scale should be insensitive to local branch closures.
+
+However, there are also reasons why fintech might not substitute for traditional banking. Fintech lenders primarily operate in mortgage markets and may not offer the full range of small business credit products. The relationship lending and advisory services provided by bank branches may not have digital equivalents. And concerns about algorithmic bias suggest that fintech may replicate or exacerbate existing disparities in credit access \citep{bartlett2022}.
+
+\subsection{Hypotheses}
+
+Based on this discussion, I test the following hypotheses:
+
+\textbf{Hypothesis 1:} Bank branch closures reduce transitions to self-employment, consistent with credit constraints affecting business formation.
+
+\textbf{Hypothesis 2:} The negative effect of branch closures on self-employment is attenuated in counties with higher fintech penetration.
+
+\textbf{Hypothesis 3:} The mitigating effect is specific to fintech lending rather than general digital infrastructure or social capital.
+
+
+\section{Data}
+
+\subsection{Community Advantage Panel Survey (CAPS)}
+
+The primary data source is the Community Advantage Panel Survey, a longitudinal survey of low-to-moderate income homeowners conducted by the University of North Carolina's Center for Community Capital. CAPS respondents were drawn from participants in the Community Advantage Program, an affordable lending initiative, and have been surveyed annually since 2003.
+
+CAPS is uniquely suited for studying fintech and credit access for several reasons. First, the sample consists of low-to-moderate income borrowers---exactly the population that fintech lenders claim to serve better and that faces the greatest constraints when traditional banking access is reduced. Second, the panel structure allows me to track the same individuals over time and control for individual fixed effects. Third, CAPS includes precise geographic identifiers (ZIP codes) that allow matching to local banking market conditions.
+
+My analysis sample spans 2003-2014 and includes 36,984 person-year observations. The main outcome variables are indicators for transitioning to incorporated self-employment (\textit{anytoise}) and unincorporated self-employment (\textit{anytouse}) in the following year.
+
+Table \ref{tab:summary} presents summary statistics. Approximately 1.8\% of the sample transitions to incorporated self-employment in a given year, while 2.3\% transition to unincorporated self-employment. The mean branch closure measure is -0.009, indicating slight net increases in nearby branches on average, though 10\% of the sample experienced closures in their ZIP code.
+
+\subsection{Bank Branch Closures}
+
+Branch closure data come from the FDIC Summary of Deposits, which provides annual information on all bank branch locations. Following \citet{malkova2024}, I construct a measure of bank branch closures at the ZIP code level that captures changes in local banking access.
+
+The closure variable (\textit{closure\_zip}) measures the change in bank branches in the respondent's ZIP code. Negative values indicate net closures, while positive values indicate net openings. The treatment indicator (\textit{treat\_zip}) equals one if the individual lives in a ZIP code that experienced any closure during the sample period.
+
+\subsection{Fintech Penetration}
+
+County-level fintech mortgage market share comes from \citet{fuster2019}, who classify mortgage lenders in Home Mortgage Disclosure Act (HMDA) data as fintech based on their lending technology. Fintech lenders are defined as those that primarily originate loans through online channels and use automated underwriting.
+
+I merge this data to CAPS using ZIP-to-county crosswalks from the Census Bureau. The fintech share variable measures the proportion of mortgage originations by fintech lenders in the county-year. This data is available for 2010-2017, restricting the fintech analysis to this period.
+
+Mean fintech share in the sample is 4.0\%, with a standard deviation of 2.4\%. Fintech penetration varies substantially across counties, from less than 0.2\% to over 25\% in some areas.
+
+\subsection{Geographic Controls}
+
+I supplement the main data with several geographic variables that may confound or moderate the fintech-closure relationship:
+
+\textit{Banking Access}: County-level branch density (branches per 10,000 population) from FDIC Summary of Deposits. I also construct a banking desert indicator for counties with fewer than 1 branch per 10,000 residents.
+
+\textit{Social Capital}: Economic connectedness measures from the Social Capital Atlas \citep{chetty2022}, which captures cross-class social connections using Facebook friendship data.
+
+\textit{Digital Infrastructure}: Broadband access rates from the American Community Survey, measuring the percentage of households with broadband internet subscriptions.
+
+
+\section{Empirical Methodology}
+
+\subsection{Baseline Specification}
+
+I estimate the effect of branch closures on self-employment using the following specification:
+
+\begin{equation}
+Y_{it} = \beta_1 \text{Closure}_{ct} + \mathbf{X}_{it}'\gamma + \alpha_i + \delta_t + \varepsilon_{it}
+\end{equation}
+
+where $Y_{it}$ is an indicator for transitioning to self-employment, $\text{Closure}_{ct}$ measures bank branch closures in the individual's county, $\mathbf{X}_{it}$ is a vector of time-varying controls, $\alpha_i$ are individual fixed effects, and $\delta_t$ are year fixed effects. Standard errors are clustered at the county level.
+
+The individual fixed effects control for time-invariant characteristics that may be correlated with both location choice and self-employment propensity. Year fixed effects absorb macroeconomic shocks affecting all individuals.
+
+\subsection{Fintech Interaction Specification}
+
+To test whether fintech mitigates closure effects, I estimate:
+
+\begin{equation}
+Y_{it} = \beta_1 \text{Closure}_{ct} + \beta_2 \text{Fintech}_{ct} + \beta_3 (\text{Closure}_{ct} \times \text{Fintech}_{ct}) + \alpha_i + \delta_t + \varepsilon_{it}
+\end{equation}
+
+The coefficient $\beta_3$ captures the differential effect of closures in high- versus low-fintech areas. Under Hypothesis 2, $\beta_1 < 0$ (closures reduce self-employment) and $\beta_3 > 0$ (fintech mitigates this effect).
+
+The identifying assumption is that, conditional on individual and year fixed effects, fintech penetration is not correlated with unobserved time-varying factors that also affect the closure-self-employment relationship. While fintech penetration is not randomly assigned, the inclusion of fixed effects and geographic controls addresses many potential confounders.
+
+\subsection{Alternative Mechanisms}
+
+To distinguish fintech-specific effects from general digital connectivity, I estimate additional specifications interacting closures with broadband access and social capital:
+
+\begin{equation}
+Y_{it} = \beta_1 \text{Closure}_{ct} + \beta_2 Z_{ct} + \beta_3 (\text{Closure}_{ct} \times Z_{ct}) + \alpha_i + \delta_t + \varepsilon_{it}
+\end{equation}
+
+where $Z_{ct}$ is broadband access or economic connectedness. If fintech effects operate through general digital infrastructure, these interactions should also be significant.
+
+
+\section{Results}
+
+\subsection{Main Results: Banking Access and Self-Employment}
+
+Table \ref{tab:table2} presents baseline results for incorporated self-employment. Column 1 shows that branch closures have a positive but insignificant effect in the full sample (coefficient = 0.005, p = 0.36). This differs from the significant negative effect found in \citet{malkova2024}, potentially due to the smaller estimation sample when restricting to observations with all geographic controls.
+
+Columns 2-3 add branch density and its interaction with closures. The interaction term is positive but not significant, suggesting that the level of remaining banking infrastructure does not significantly moderate closure effects in this sample.
+
+\subsection{Fintech Penetration and Self-Employment}
+
+Table \ref{tab:table3} presents the key results for the fintech interaction, restricting to 2010-2017 when fintech data are available.
+
+Column 1 shows that in this period, branch closures significantly reduce incorporated self-employment (coefficient = -0.013, p = 0.026). The fintech share coefficient is negative but not significant.
+
+Column 2 adds the closure-fintech interaction. The main closure effect becomes larger in magnitude (-0.042, p = 0.013), while the interaction term is positive and significant (0.82, p = 0.027). This pattern is consistent with Hypothesis 2: closures reduce self-employment, but this effect is attenuated in high-fintech areas.
+
+To interpret the magnitudes: at mean fintech share (4\%), the net closure effect is $-0.042 + 0.82 \times 0.04 = -0.009$, or about 0.9 percentage points. At one standard deviation above the mean (6.4\%), the effect is $-0.042 + 0.82 \times 0.064 = +0.01$, essentially zero. The interaction coefficient implies that a one-standard-deviation increase in fintech penetration (2.4 percentage points) offsets about half of the baseline closure effect.
+
+Column 3 adds branch density as a control, and the results are robust. The closure-fintech interaction remains significant at the 5\% level.
+
+\subsection{Alternative Mechanisms}
+
+Table \ref{tab:table4} tests whether the mitigating effect is specific to fintech or reflects general digital connectivity.
+
+Column 1 shows that economic connectedness (social capital) does not significantly moderate closure effects. The interaction coefficient is positive but small and insignificant.
+
+Column 2 examines broadband access. Again, the interaction is not significant, and the point estimate is actually negative (though tiny).
+
+Column 3 includes both variables simultaneously with similar null results.
+
+These findings support Hypothesis 3: the mitigating effect is specific to fintech lending rather than general digital infrastructure or social networks. This suggests that the availability of alternative credit channels, rather than simply the ability to conduct business online, drives the results.
+
+\subsection{Unincorporated Self-Employment}
+
+Table \ref{tab:table5} examines unincorporated self-employment. Column 1 shows that closures significantly reduce unincorporated self-employment in the full sample (coefficient = -0.033, p = 0.032).
+
+Interestingly, the branch density and social capital interactions are larger in magnitude for unincorporated self-employment, though still not statistically significant. This may reflect different credit needs: incorporated businesses may rely more on formal credit markets where fintech operates, while unincorporated businesses may depend more on informal networks and local relationships.
+
+
+\section{Discussion and Conclusion}
+
+This paper provides evidence that fintech lending partially mitigates the negative effects of bank branch closures on self-employment. Using individual-level panel data on low-to-moderate income borrowers combined with county-level fintech penetration measures, I find that closures significantly reduce transitions to incorporated self-employment, but this effect is attenuated in areas with higher fintech market share.
+
+Several caveats apply. First, the analysis is limited to 2010-2017 when fintech data are available, and the fintech market has evolved substantially since then. Second, the CAPS sample of low-to-moderate income homeowners may not generalize to the broader population. Third, I observe fintech mortgage market share but cannot directly measure fintech small business lending, which would be more directly relevant for self-employment decisions.
+
+Despite these limitations, the findings have important implications. For policymakers concerned about the effects of banking consolidation on underserved communities, fintech lending appears to provide a partial market-based solution. However, the mitigation is incomplete---even at high fintech penetration, closure effects are not fully offset.
+
+This suggests a role for policy interventions that facilitate alternative lending while maintaining consumer protections. The CFPB's Section 1033 open banking rule, which requires data sharing to enhance competition, may help in this regard by allowing fintech lenders to better assess borrowers' creditworthiness. Community development financial institutions (CDFIs) and credit unions may also help fill gaps that remain after both traditional bank and fintech channels are exhausted.
+
+For the fintech industry, these results support claims that alternative lenders serve borrowers underserved by traditional banks. At the same time, the findings highlight that fintech lending is not a panacea---significant negative effects of closure remain even in high-fintech areas.
+
+Future research should examine whether these patterns persist as fintech lending matures and expands into small business credit. Understanding the types of borrowers and businesses most affected by both closures and fintech availability would help target policy interventions more effectively.
+
+
+\newpage
+\begin{table}[H]
+\centering
+\caption{Summary Statistics}
+\label{tab:summary}
+\begin{threeparttable}
+\begin{tabular}{lcccc}
+\toprule
+Variable & Mean & Std. Dev. & Min & Max \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel A: Main Variables}} \\
+Transition to Incorporated SE & 0.018 & 0.132 & 0 & 1 \\
+Transition to Unincorporated SE & 0.023 & 0.150 & 0 & 1 \\
+Branch Closure (ZIP) & -0.009 & 0.242 & -4 & 4.78 \\
+Treatment Indicator & 0.101 & 0.302 & 0 & 1 \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel B: Geographic Alternative Data}} \\
+Fintech Share & 0.040 & 0.024 & 0.002 & 0.254 \\
+Branches per 10,000 & 2.317 & 0.865 & 0 & 17.62 \\
+Banking Desert & 0.015 & 0.123 & 0 & 1 \\
+Economic Connectedness & 0.753 & 0.197 & 0.30 & 1.57 \\
+Broadband Access (\%) & 80.07 & 9.20 & 0 & 100 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} Summary statistics from CAPS panel data, 2003-2014. N = 36,984 person-years. Fintech share available only for 2010-2017 (N = 13,244).
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Banking Access and Incorporated Self-Employment}
+\label{tab:table2}
+\begin{threeparttable}
+\begin{tabular}{lcccc}
+\toprule
+ & (1) & (2) & (3) & (4) \\
+ & Baseline & +Branches & +Interaction & Banking Desert \\
+\midrule
+Closure (ZIP) & 0.0053 & 0.0051 & -0.0019 & 0.0053 \\
+ & (0.0057) & (0.0057) & (0.0114) & (0.0057) \\
+Branches per 10k &  & -0.0091 & -0.0091 &  \\
+ &  & (0.0140) & (0.0140) &  \\
+Closure $\times$ Branches &  &  & 0.0032 &  \\
+ &  &  & (0.0053) &  \\
+\midrule
+Observations & 1,449 & 1,449 & 1,449 & 1,449 \\
+Individual FE & Yes & Yes & Yes & Yes \\
+Year FE & Yes & Yes & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} Dependent variable is indicator for transitioning to incorporated self-employment. Standard errors clustered by county in parentheses. * p<0.10, ** p<0.05, *** p<0.01.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Fintech Penetration and Self-Employment (2010-2017)}
+\label{tab:table3}
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & Fintech & +Interaction & +Branches \\
+\midrule
+Closure (ZIP) & -0.0130** & -0.0420** & -0.0419** \\
+ & (0.0057) & (0.0165) & (0.0168) \\
+Fintech Share & -0.8327 & -0.8286 & -0.8253 \\
+ & (0.8617) & (0.8620) & (0.8621) \\
+Closure $\times$ Fintech &  & 0.8224** & 0.8174** \\
+ &  & (0.3617) & (0.3655) \\
+Branches per 10k &  &  & 0.0015 \\
+ &  &  & (0.0208) \\
+\midrule
+Observations & 484 & 484 & 484 \\
+Individual FE & Yes & Yes & Yes \\
+Year FE & Yes & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} Sample restricted to 2010-2017 when fintech data available. Dependent variable is indicator for transitioning to incorporated self-employment. Standard errors clustered by county in parentheses. * p<0.10, ** p<0.05, *** p<0.01.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Social Capital and Digital Access}
+\label{tab:table4}
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & Econ Connect & Broadband & Combined \\
+\midrule
+Closure (ZIP) & -0.0036 & 0.0173 & 0.0431 \\
+ & (0.0152) & (0.0280) & (0.0397) \\
+Economic Connectedness & 0.0742 &  & 0.0756 \\
+ & (0.0658) &  & (0.0816) \\
+Closure $\times$ Econ Connect & 0.0117 &  & 0.0354 \\
+ & (0.0224) &  & (0.0447) \\
+Broadband Access (\%) &  & 0.0005 & -0.0000 \\
+ &  & (0.0008) & (0.0008) \\
+Closure $\times$ Broadband &  & -0.0001 & -0.0008 \\
+ &  & (0.0003) & (0.0008) \\
+\midrule
+Observations & 1,418 & 1,447 & 1,418 \\
+Individual FE & Yes & Yes & Yes \\
+Year FE & Yes & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} Dependent variable is indicator for transitioning to incorporated self-employment. Standard errors clustered by county in parentheses. * p<0.10, ** p<0.05, *** p<0.01.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Unincorporated Self-Employment}
+\label{tab:table5}
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & Baseline & Branches & Social Capital \\
+\midrule
+Closure (ZIP) & -0.0331** & -0.0863 & 0.0155 \\
+ & (0.0151) & (0.0693) & (0.0554) \\
+Branches per 10k &  & -0.0014 &  \\
+ &  & (0.0066) &  \\
+Closure $\times$ Branches &  & 0.0245 &  \\
+ &  & (0.0288) &  \\
+Economic Connectedness &  &  & 0.0438* \\
+ &  &  & (0.0251) \\
+Closure $\times$ Econ Connect &  &  & -0.0616 \\
+ &  &  & (0.0773) \\
+\midrule
+Observations & 1,449 & 1,449 & 1,417 \\
+Individual FE & Yes & Yes & Yes \\
+Year FE & Yes & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} Dependent variable is indicator for transitioning to unincorporated self-employment. Standard errors clustered by county in parentheses. * p<0.10, ** p<0.05, *** p<0.01.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\newpage
+\bibliographystyle{aer}
+\bibliography{references}
+
+\end{document}

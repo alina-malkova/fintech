@@ -1,0 +1,28 @@
+# Data files (too large for git)
+*.dta
+*.csv
+*.xlsx
+*.xls
+
+# Stata logs and temp files
+*.log
+*.smcl
+*.ster
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Keep specific documentation
+!CLAUDE.md
+!*.md
