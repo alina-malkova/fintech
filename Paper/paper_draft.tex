@@ -55,7 +55,7 @@ Second, I contribute to research on bank branch closures and local economic deve
 
 Third, my findings inform ongoing policy debates about fintech regulation and financial inclusion. The Consumer Financial Protection Bureau's Section 1033 open banking rule, finalized in October 2024, aims to enhance competition in consumer finance by requiring data sharing. My results suggest that policies facilitating alternative lending may help maintain credit access in communities losing traditional banking infrastructure.
 
-The remainder of this paper proceeds as follows. Section 2 reviews related literature and develops hypotheses. Section 3 describes the data sources and construction of key variables. Section 4 presents the empirical methodology. Section 5 reports main results and robustness checks. Section 6 discusses implications and concludes.
+The remainder of this paper proceeds as follows. Section 2 reviews related literature and develops the empirical questions. Section 3 describes the data sources and construction of key variables. Section 4 presents the empirical methodology. Section 5 reports main results and robustness checks. Section 6 discusses implications and concludes.
 
 
 \section{Background and Hypotheses}
@@ -99,7 +99,7 @@ I frame these as questions rather than hypotheses because the identification str
 
 The primary data source is the Community Advantage Panel Survey, a longitudinal survey of low-to-moderate income homeowners conducted by the University of North Carolina's Center for Community Capital. CAPS respondents were drawn from participants in the Community Advantage Program, an affordable lending initiative, and have been surveyed annually since 2003.
 
-CAPS is uniquely suited for studying fintech and credit access for several reasons. First, the sample consists of low-to-moderate income borrowers---exactly the population that fintech lenders claim to serve better and that faces the greatest constraints when traditional banking access is reduced. Second, the panel structure allows me to track the same individuals over time and control for individual fixed effects. Third, CAPS includes precise geographic identifiers (ZIP codes) that allow matching to local banking market conditions.
+CAPS is uniquely suited for studying fintech and credit access for several reasons. First, the sample consists of low-to-moderate income borrowers---exactly the population that fintech lenders claim to serve better and that faces the greatest constraints when traditional banking access is reduced. Second, the panel structure allows me to track the same individuals over time and control for merger-group-level unobservables. Third, CAPS includes precise geographic identifiers (ZIP codes) that allow matching to local banking market conditions.
 
 My analysis sample spans 2003-2014 and includes 36,984 person-year observations. The main outcome variables are indicators for transitioning to incorporated self-employment (\textit{anytoise}) and unincorporated self-employment (\textit{anytouse}) in the following year.
 
@@ -229,7 +229,9 @@ A key concern with the main results is that fintech penetration is not randomly 
 
 Table \ref{tab:robust} presents robustness checks addressing this concern. Column 1 reproduces the baseline specification. Column 2 adds county fixed effects, controlling for time-invariant county heterogeneity. The closure-fintech interaction coefficient drops from 0.82 to 0.28 and loses statistical significance. Column 3 includes county $\times$ year fixed effects, the most demanding specification that absorbs all county-level time variation. The interaction coefficient is 0.46 but remains insignificant.
 
-These results suggest caution in interpreting the main findings. However, the pattern is not unambiguously negative. The coefficient in the county $\times$ year specification (0.46) is roughly half the baseline estimate rather than collapsing to zero, and the sample drops to only 379 observations---asking a lot of such limited data. The maintained positive sign, while statistically inconclusive, is at least not contradictory to the baseline finding. The most honest reading is that the evidence is consistent with \textit{some} mitigating effect, but the magnitude is uncertain and could range from near-zero to the baseline estimate.
+These results suggest caution in interpreting the main findings. However, the pattern is not unambiguously negative. The coefficient in the county $\times$ year specification (0.46) is roughly half the baseline estimate rather than collapsing to zero, and the sample drops to only 379 observations---asking a lot of such limited data. The maintained positive sign, while statistically inconclusive, is at least not contradictory to the baseline finding.
+
+A power calculation clarifies the interpretation. To detect an effect of 0.82 (the baseline estimate) at 80\% power with $\alpha = 0.05$ requires a standard error below 0.29.\footnote{Minimum detectable effect = $(z_{0.975} + z_{0.80}) \times SE = 2.8 \times SE$, so detecting $\beta = 0.82$ requires $SE < 0.82/2.8 = 0.29$.} The county $\times$ year specification has $SE = 0.77$, implying only about 18\% power to detect the baseline effect. Even the county FE specification ($SE = 0.55$) has roughly 32\% power. Both specifications are severely underpowered, so the loss of significance reflects ``we cannot tell'' rather than ``the effect is not there.'' The minimum detectable effect at 80\% power in the county $\times$ year specification is 2.16---more than 2.5 times the baseline estimate---highlighting how demanding this test is given the sample size.
 
 \subsection{Placebo Test: Pre-Fintech Period}
 
@@ -286,23 +288,21 @@ Dropped Merger Group & Coefficient & Std. Error & N \\
 \midrule
 None (Baseline) & 0.8224** & (0.3617) & 484 \\
 \midrule
-Drop Merger 1 & 0.8224** & (0.3617) & 484 \\
 Drop Merger 2 & 0.9620** & (0.3838) & 462 \\
 Drop Merger 3 & 0.8587** & (0.3775) & 477 \\
 Drop Merger 5 & 0.8713 & (0.6456) & 206 \\
 Drop Merger 6 & 0.8384** & (0.3634) & 471 \\
-Drop Merger 7 & 0.8224** & (0.3617) & 484 \\
 Drop Merger 10 & 0.7768** & (0.3729) & 459 \\
 Drop Merger 11 & 0.9365* & (0.5608) & 388 \\
 Drop Merger 12 & 0.9297*** & (0.3436) & 456 \\
 Drop Merger 13 & 0.5596* & (0.3233) & 469 \\
 \midrule
-\multicolumn{4}{l}{\textit{Range: 0.56--0.96}} \\
+\multicolumn{4}{l}{\textit{Range: 0.56--0.96 (8 contributing merger groups)}} \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
 \small
-\item \textit{Notes:} Each row drops one merger group and re-estimates the baseline specification. Coefficients in the range 0.5--1.1 would suggest robustness; coefficients near zero or above 1.5 when dropping a single group would indicate that group is influential. MergerID and year FE included. Standard errors clustered by county. * p<0.10, ** p<0.05, *** p<0.01.
+\item \textit{Notes:} Each row drops one merger group and re-estimates the baseline specification. Merger groups 1 and 7 are omitted because they contribute zero observations to the fintech sample after the 2010--2014 restriction and singleton drops. MergerID and year FE included. Standard errors clustered by county. * p<0.10, ** p<0.05, *** p<0.01.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
