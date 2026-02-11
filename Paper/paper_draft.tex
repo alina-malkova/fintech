@@ -192,7 +192,7 @@ The negative closure effect is specific to the 2010-2014 period. This could refl
 
 Column 1 shows that in this period, branch closures significantly reduce incorporated self-employment (coefficient = -0.013, p = 0.026). The fintech share coefficient is negative but not significant.
 
-Column 2 adds the closure-fintech interaction. The main closure effect becomes larger in magnitude (-0.042, p = 0.013), while the interaction term is positive and significant (0.82, p = 0.027). This pattern is consistent with Hypothesis 2: closures reduce self-employment, but this effect is attenuated in high-fintech areas.
+Column 2 adds the closure-fintech interaction. The main closure effect becomes larger in magnitude (-0.042, p = 0.013), while the interaction term is positive and significant (0.82, p = 0.027). This pattern is consistent with Question 2: closures reduce self-employment, but this effect is attenuated in high-fintech areas.
 
 To interpret the magnitudes: at mean fintech share (4.0\%), the net closure effect is $-0.042 + 0.82 \times 0.040 = -0.009$, or about 0.9 percentage points. The fintech level that fully offsets the closure effect is $0.042 / 0.82 = 0.051$, or 5.1\%---slightly above the mean but well within the observed range.
 
@@ -216,7 +216,9 @@ The pattern is consistent with Question 3---broadband and social capital do not 
 
 Table \ref{tab:table5} examines unincorporated self-employment. Column 1 shows that closures significantly reduce unincorporated self-employment in the full sample (coefficient = -0.033, p = 0.032).
 
-Column 2 presents the fintech interaction for unincorporated self-employment. Unlike the positive interaction found for incorporated self-employment, the fintech interaction here is negative and insignificant (-0.10, SE = 0.68). This suggests that fintech does not mitigate closure effects for unincorporated businesses. The contrast between incorporated and unincorporated self-employment may reflect different credit needs: incorporated businesses may rely more on formal credit markets where fintech operates, while unincorporated businesses may depend more on informal networks and local relationships that fintech cannot substitute.
+Column 2 presents the fintech interaction for unincorporated self-employment. Unlike the positive interaction found for incorporated self-employment, the fintech interaction here is negative and insignificant (-0.10, SE = 0.68). This null result provides a within-paper falsification test that does not depend on the identification concerns affecting the main analysis. If fintech mortgage share were simply proxying for ``economically dynamic county'' or other time-varying confounders, we would expect it to attenuate closure effects for \textit{both} types of self-employment. The fact that the positive interaction is specific to incorporated self-employment---which is more dependent on formal credit markets---supports the lending channel interpretation.
+
+Incorporated businesses typically require more startup capital and are more likely to seek formal financing, making them more sensitive to changes in credit access. Unincorporated self-employment (e.g., freelancing, gig work, informal businesses) may depend more on informal networks and personal savings, channels that fintech mortgage lending cannot substitute. This differential response is exactly what we would predict if the mechanism operates through formal credit access rather than general county characteristics.
 
 The branch density and social capital interactions (Columns 3-4) are not statistically significant for unincorporated self-employment either.
 
@@ -227,7 +229,7 @@ A key concern with the main results is that fintech penetration is not randomly 
 
 Table \ref{tab:robust} presents robustness checks addressing this concern. Column 1 reproduces the baseline specification. Column 2 adds county fixed effects, controlling for time-invariant county heterogeneity. The closure-fintech interaction coefficient drops from 0.82 to 0.28 and loses statistical significance. Column 3 includes county $\times$ year fixed effects, the most demanding specification that absorbs all county-level time variation. The interaction coefficient is 0.46 but remains insignificant.
 
-These results suggest caution in interpreting the main findings. The baseline specification may overstate the mitigating effect of fintech if high-fintech counties also experienced other favorable trends during 2010-2014.
+These results suggest caution in interpreting the main findings. However, the pattern is not unambiguously negative. The coefficient in the county $\times$ year specification (0.46) is roughly half the baseline estimate rather than collapsing to zero, and the sample drops to only 379 observations---asking a lot of such limited data. The maintained positive sign, while statistically inconclusive, is at least not contradictory to the baseline finding. The most honest reading is that the evidence is consistent with \textit{some} mitigating effect, but the magnitude is uncertain and could range from near-zero to the baseline estimate.
 
 \subsection{Placebo Test: Pre-Fintech Period}
 
@@ -267,7 +269,7 @@ Year FE & Yes & Yes \\
 \end{threeparttable}
 \end{table}
 
-The placebo interaction coefficient is -0.72 (p = 0.25), suggesting no pre-trend. Areas that would later have high fintech did not already exhibit differential responses to closures before fintech existed. This is the strongest piece of evidence supporting a causal interpretation of the main results.
+The placebo interaction coefficient is -0.72 (p = 0.25), which is not only insignificant but \textit{opposite in sign} from the main result (+0.82). This sign reversal is informative: if time-invariant county characteristics (e.g., economic dynamism, tech-savviness) explained the positive fintech interaction in 2010-2014, we would expect the same counties to show attenuated closure effects in 2003-2009 as well. Instead, the point estimate is negative, actively cutting against the confounding story. Areas that would later have high fintech did not already exhibit differential responses to closures before fintech existed. This is the strongest piece of evidence supporting a causal interpretation of the main results.
 
 \subsection{Summary of Evidence}
 
@@ -339,7 +341,7 @@ Transition to Unincorporated SE & 0.023 & 0.150 & 0 & 1 \\
 Branch Closure (ZIP) & -0.009 & 0.242 & -4 & 4.78 \\
 Treatment Indicator & 0.101 & 0.302 & 0 & 1 \\
 \midrule
-\multicolumn{5}{l}{\textit{Panel B: Geographic Alternative Data}} \\
+\multicolumn{5}{l}{\textit{Panel B: County-Level Variables}} \\
 Fintech Share & 0.040 & 0.024 & 0.002 & 0.254 \\
 Branches per 10,000 & 2.317 & 0.865 & 0 & 17.62 \\
 Banking Desert & 0.015 & 0.123 & 0 & 1 \\
