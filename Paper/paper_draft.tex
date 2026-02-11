@@ -271,9 +271,45 @@ Year FE & Yes & Yes \\
 
 The placebo interaction coefficient is -0.72 (p = 0.25), which is not only insignificant but \textit{opposite in sign} from the main result (+0.82). This sign reversal is informative: if time-invariant county characteristics (e.g., economic dynamism, tech-savviness) explained the positive fintech interaction in 2010-2014, we would expect the same counties to show attenuated closure effects in 2003-2009 as well. Instead, the point estimate is negative, actively cutting against the confounding story. Areas that would later have high fintech did not already exhibit differential responses to closures before fintech existed. This is the strongest piece of evidence supporting a causal interpretation of the main results.
 
+\subsection{Leave-One-Out Analysis by Merger Group}
+
+With only 10 merger groups driving identification (8 of which contribute to the fintech analysis after singleton drops), it is important to verify that no single merger group drives the entire result. Table \ref{tab:loo} presents a leave-one-out analysis, re-estimating the fintech interaction after dropping each merger group in turn.
+
+\begin{table}[H]
+\centering
+\caption{Leave-One-Out Analysis by Merger Group}
+\label{tab:loo}
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+Dropped Merger Group & Coefficient & Std. Error & N \\
+\midrule
+None (Baseline) & 0.8224** & (0.3617) & 484 \\
+\midrule
+Drop Group 1 & [TBD] & [TBD] & [TBD] \\
+Drop Group 2 & [TBD] & [TBD] & [TBD] \\
+Drop Group 3 & [TBD] & [TBD] & [TBD] \\
+Drop Group 4 & [TBD] & [TBD] & [TBD] \\
+Drop Group 5 & [TBD] & [TBD] & [TBD] \\
+Drop Group 6 & [TBD] & [TBD] & [TBD] \\
+Drop Group 7 & [TBD] & [TBD] & [TBD] \\
+Drop Group 8 & [TBD] & [TBD] & [TBD] \\
+\midrule
+\multicolumn{4}{l}{\textit{Range: [min]--[max]}} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} Each row drops one merger group and re-estimates the baseline specification. Coefficients in the range 0.5--1.1 would suggest robustness; coefficients near zero or above 1.5 when dropping a single group would indicate that group is influential. MergerID and year FE included. Standard errors clustered by county. * p<0.10, ** p<0.05, *** p<0.01.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+If all leave-one-out coefficients remain in a similar range (e.g., 0.5--1.1), the result is robust to the exclusion of any single merger group. Conversely, if dropping one group causes the coefficient to collapse toward zero or spike dramatically, that group would be driving the result, raising concerns about external validity.
+
 \subsection{Summary of Evidence}
 
-The pattern of results---significant in the baseline, attenuated but positive with county FE, and no pre-trend in the placebo---is consistent with fintech providing some mitigation, though the magnitude is uncertain. The most conservative interpretation is that the true effect lies between zero and the baseline estimate of 0.82, with considerable uncertainty.
+The pattern of results---significant in the baseline, attenuated but positive with county FE, no pre-trend in the placebo, and [robust/sensitive] to leave-one-out analysis---is consistent with fintech providing some mitigation, though the magnitude is uncertain. The most conservative interpretation is that the true effect lies between zero and the baseline estimate of 0.82, with considerable uncertainty.
 
 
 \begin{table}[H]
