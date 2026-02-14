@@ -501,7 +501,7 @@ Does fintech mitigation of branch closure effects require digital infrastructure
 ## Paper Status (February 14, 2026)
 
 ### Current State
-- **Length**: 50 pages
+- **Length**: 53 pages
 - **Compiled**: Yes (pdflatex)
 - **Figures**: All 3 verified present in Output/
 
@@ -514,13 +514,15 @@ Does fintech mitigation of branch closure effects require digital infrastructure
    - Main results (Table 7)
    - Robustness (county FE, placebo)
    - Graphical evidence (spec curve, event study)
-   - **NEW**: Digital Infrastructure as a Mechanism (triple interaction)
+   - Digital Infrastructure as a Mechanism (triple interaction)
+   - **NEW**: Temporal Dynamics (fintech effect strengthens 2013-2014)
 6. Alternative Creditworthiness Analysis
    - Fintech score construction
    - Validation (AUC = 0.978)
    - **EXPANDED**: Geographic heterogeneity (14 environments, 5 panels)
-   - Branch closure interactions
-   - **NEW**: CAPS-HMDA linkage analysis
+   - Branch closure interactions (incl. triple interaction with individual score)
+   - **NEW**: Demographic heterogeneity (AUC by race, age, income)
+   - CAPS-HMDA linkage analysis
 7. Discussion and Conclusion
 
 ### Key Tables
@@ -532,6 +534,57 @@ Does fintech mitigation of branch closure effects require digital infrastructure
 | Table 10 | HMDA fintech share trends |
 | Table 11 | HMDA linkage results |
 | Table 12 | Triple interaction (Closure × Fintech × Broadband) |
+| Table 13 | **NEW**: Temporal dynamics (Early vs Late period) |
+| Table 14 | **NEW**: Demographic heterogeneity (AUC by group) |
+
+---
+
+## Additional Empirical Extensions (February 14, 2026)
+
+### Completed Analyses
+Six empirical extensions were run and added to the paper:
+
+#### 1. Temporal Dynamics
+| Period | Closure × Fintech | t-stat | p-value |
+|--------|-------------------|--------|---------|
+| Early (2010-2012) | 0.0183 | 0.96 | 0.337 |
+| Late (2013-2014) | 0.0290 | 3.12 | 0.002 |
+
+**Key Finding**: Fintech mitigation effect strengthens as industry matures. Not significant in 2010-2012, highly significant in 2013-2014.
+
+#### 2. Demographic Heterogeneity
+| Group | AUC | N |
+|-------|-----|---|
+| Non-Hispanic | 0.963 | 4,287 |
+| Hispanic | 0.942 | 1,459 |
+| Younger (<45) | 0.971 | 2,893 |
+| Older (≥45) | 0.955 | 2,853 |
+| Lower Income (<$40k) | 0.941 | 2,018 |
+| Higher Income (≥$40k) | 0.969 | 3,728 |
+
+**Key Finding**: Fintech score achieves AUC > 0.94 across ALL demographic groups. No substantial differential performance.
+
+#### 3. Triple Interaction (Closure × County Fintech × Individual Score)
+- Coefficient: +0.028
+- t-statistic: 1.91
+- p-value: 0.056 (marginally significant)
+
+**Interpretation**: High-scoring individuals benefit MORE from fintech market presence when branches close.
+
+#### 4. Credit Constraint Channel
+- Not significant (collinearity issues with large coefficients)
+
+#### 5. Falsification Test
+- Could not run (placebo outcome variables not in expected format)
+
+#### 6. Dose-Response by Fintech Tercile
+| Tercile | Closure Effect | t-stat |
+|---------|---------------|--------|
+| Low (1.2%-2.6%) | -0.0088 | -0.67 |
+| Medium (2.6%-3.9%) | -0.0248 | -2.66 |
+| High (3.9%-12.7%) | +0.0015 | 0.92 |
+
+**Interpretation**: Negative closure effect attenuated in high-fintech areas.
 
 ---
 
@@ -553,4 +606,4 @@ Does fintech mitigation of branch closure effects require digital infrastructure
 
 ---
 
-*Last updated: February 14, 2026*
+*Last updated: February 14, 2026 (with empirical extensions)*

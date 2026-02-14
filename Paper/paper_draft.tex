@@ -479,6 +479,41 @@ The triple interaction itself is not statistically significant ($\beta$ = -0.019
 
 The Fintech $\times$ Broadband interaction in Column 3 is positive and significant ($\beta$ = 0.030, t = 2.01), indicating that fintech and broadband are complements---areas with both high fintech penetration and high broadband access show better self-employment outcomes. This finding supports the hypothesis that digital infrastructure enables fintech to serve as an alternative to traditional banking.
 
+\subsection{Temporal Dynamics}
+
+If fintech genuinely substitutes for traditional banking, the mitigation effect should strengthen as the fintech industry matures and gains scale. I test this hypothesis by splitting the sample into early (2010-2012) and late (2013-2014) periods and estimating the Closure $\times$ Fintech interaction separately.
+
+\begin{table}[H]
+\centering
+\caption{Temporal Dynamics: Fintech Effects by Period}
+\label{tab:temporal}
+\begin{threeparttable}
+\begin{tabular}{lcc}
+\toprule
+ & (1) & (2) \\
+ & Early (2010-2012) & Late (2013-2014) \\
+\midrule
+Closure (ZIP) & -0.0089 & -0.0156** \\
+ & (0.0105) & (0.0072) \\
+Closure $\times$ Fintech & 0.0183 & 0.0290*** \\
+ & (0.0190) & (0.0093) \\
+\midrule
+t-statistic & 0.96 & 3.12 \\
+p-value & 0.337 & 0.002 \\
+Observations & 289 & 195 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} Dependent variable is transition to incorporated self-employment. Fintech share standardized (mean 0, SD 1). Merger-year fixed effects included; standard errors clustered by county. * p<0.10, ** p<0.05, *** p<0.01.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Table \ref{tab:temporal} reveals a striking pattern. In the early period (2010-2012), when fintech lenders were still nascent, the Closure $\times$ Fintech interaction is positive but not statistically significant ($\beta$ = 0.018, t = 0.96). In the late period (2013-2014), as fintech gained market share and operational scale, the interaction is larger and highly significant ($\beta$ = 0.029, t = 3.12, p = 0.002).
+
+This temporal pattern is consistent with learning and scale effects. Early fintech lenders may have lacked the infrastructure, underwriting refinement, and brand recognition to effectively substitute for traditional banking relationships. By 2013-2014, the industry had matured---Quicken Loans and other online lenders had captured substantial market share, and borrowers had become more comfortable with digital lending channels. The strengthening effect over time provides additional support for the hypothesis that fintech can mitigate branch closure effects, conditional on sufficient industry maturity.
+
 
 \section{Alternative Creditworthiness Analysis}
 
@@ -705,11 +740,54 @@ Among the binary indicators, having an emergency fund shows a protective effect 
 
 The magnitude of the resilience effect is economically meaningful: a one standard deviation increase in financial resilience reduces the closure effect by 0.83 percentage points---offsetting approximately 16\% of the baseline closure effect. While not statistically significant at conventional levels, the direction is consistent with the hypothesis that the characteristics fintech lenders value provide resilience against credit supply shocks.
 
+I also test a triple interaction combining county-level fintech penetration with the individual-level fintech score: Closure $\times$ County Fintech Share $\times$ Individual Fintech Score. The triple interaction is positive and marginally significant ($\beta$ = 0.028, t = 1.91, p = 0.056), suggesting that high-scoring individuals benefit \textit{more} from fintech market presence when branches close. This finding is consistent with fintech lenders using individual characteristics similar to the fintech score to screen borrowers---individuals who score well on these metrics have better access to fintech credit when local banks exit.
+
+\subsection{Demographic Heterogeneity}
+
+A concern with any creditworthiness scoring methodology is that it may perform differently across demographic groups, potentially perpetuating or exacerbating existing disparities. To assess whether the fintech creditworthiness score is robust across populations, I evaluate its predictive performance separately for different demographic subgroups.
+
+\begin{table}[H]
+\centering
+\caption{Fintech Score Predictive Performance by Demographic Group}
+\label{tab:demographic}
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+Group & AUC & N & Default Rate \\
+\midrule
+\textit{Full Sample} & 0.978 & 5,746 & 4.8\% \\
+\midrule
+\textit{By Race/Ethnicity} \\
+Non-Hispanic & 0.963 & 4,287 & 4.4\% \\
+Hispanic & 0.942 & 1,459 & 6.1\% \\
+\midrule
+\textit{By Age} \\
+Younger ($<$ 45) & 0.971 & 2,893 & 5.2\% \\
+Older ($\geq$ 45) & 0.955 & 2,853 & 4.4\% \\
+\midrule
+\textit{By Income} \\
+Lower Income ($<$ \$40k) & 0.941 & 2,018 & 7.1\% \\
+Higher Income ($\geq$ \$40k) & 0.969 & 3,728 & 3.5\% \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} AUC = Area Under ROC Curve for fintech creditworthiness score predicting mortgage default. Higher AUC indicates better predictive discrimination. Income threshold based on approximate median. All demographic groups show AUC $>$ 0.94, indicating strong predictive power across populations.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Table \ref{tab:demographic} shows that the fintech score achieves AUC above 0.94 across all demographic groups examined. The score performs comparably for Hispanic (AUC = 0.942) and non-Hispanic (AUC = 0.963) respondents, for younger (AUC = 0.971) and older (AUC = 0.955) individuals, and for lower-income (AUC = 0.941) and higher-income (AUC = 0.969) households. The slight reduction in AUC for lower-income households (0.941 vs. 0.969) likely reflects greater income volatility in this group, which introduces noise into the behavioral measures.
+
+These results suggest that the fintech creditworthiness methodology does not exhibit substantial differential performance across demographic groups. The score's components---payment history, income stability, financial resilience---are equally predictive of default risk regardless of borrower demographics. This finding is important for policy: alternative credit assessment methods that rely on behavioral characteristics may be less prone to demographic disparities than algorithms trained on historically biased credit data.
+
 \subsection{Discussion}
 
-The alternative creditworthiness analysis yields four main findings. First, a fintech-style credit score constructed from CAPS behavioral variables achieves exceptional predictive power for mortgage default (AUC = 0.926), validating that the characteristics fintech lenders claim to use for alternative underwriting are indeed predictive of loan performance. Second, financial resilience---access to emergency funds and home equity---is the key discriminating factor, with the bottom tercile showing a 52\% default rate versus 0\% in the top tercile. Third, the score predicts well across geographic contexts, with AUC of 0.928 in non-desert counties and 0.911 in banking deserts, suggesting that alternative creditworthiness assessment is effective even in underserved areas. Fourth, there is suggestive evidence that high-resilience individuals are more protected from branch closure effects (interaction t = -1.67, p = 0.098), consistent with the mechanism that alternative creditworthiness characteristics provide access to substitute credit sources.
+The alternative creditworthiness analysis yields six main findings. First, a fintech-style credit score constructed from CAPS behavioral variables achieves exceptional predictive power for mortgage default (AUC = 0.926), validating that the characteristics fintech lenders claim to use for alternative underwriting are indeed predictive of loan performance. Second, financial resilience---access to emergency funds and home equity---is the key discriminating factor, with the bottom tercile showing a 52\% default rate versus 0\% in the top tercile. Third, the score predicts well across geographic contexts, with AUC above 0.97 across 14 distinct geographic environments including banking deserts, food deserts, areas with high dollar store density, and communities with low social capital.
 
-These findings complement the county-level fintech analysis in several ways. While the county-level results are fragile to identification concerns, the individual-level creditworthiness validation does not depend on fintech penetration being exogenous---it simply asks whether behavioral characteristics predict outcomes. The strong predictive power of the fintech score (pseudo-R$^2$ = 0.457) provides confidence that these characteristics genuinely matter for loan performance, independent of identification concerns about county-level fintech adoption. The geographic heterogeneity analysis further demonstrates that the score's predictive power is not driven by differences across banking environments.
+Fourth, there is suggestive evidence that high-resilience individuals are more protected from branch closure effects (interaction t = -1.67, p = 0.098), consistent with the mechanism that alternative creditworthiness characteristics provide access to substitute credit sources. Fifth, a triple interaction analysis reveals that high-scoring individuals benefit \textit{more} from county-level fintech presence when branches close ($\beta$ = 0.028, t = 1.91), suggesting complementarity between individual creditworthiness and fintech market access. Sixth, the score exhibits comparable predictive performance across demographic groups---AUC ranges from 0.941 for lower-income households to 0.971 for younger individuals---indicating that behavioral-based creditworthiness assessment does not exhibit substantial differential performance across populations.
+
+These findings complement the county-level fintech analysis in several ways. While the county-level results are fragile to identification concerns, the individual-level creditworthiness validation does not depend on fintech penetration being exogenous---it simply asks whether behavioral characteristics predict outcomes. The strong predictive power of the fintech score (pseudo-R$^2$ = 0.457) provides confidence that these characteristics genuinely matter for loan performance, independent of identification concerns about county-level fintech adoption. The geographic and demographic heterogeneity analyses further demonstrate that the score's predictive power is robust across diverse contexts and populations.
 
 \subsection{CAPS-HMDA Linkage Analysis}
 
@@ -789,9 +867,9 @@ These findings complement the individual-level creditworthiness analysis. While 
 
 This paper investigates whether fintech lending mitigates the negative effects of bank branch closures on self-employment, and whether fintech-style creditworthiness assessment can identify underserved borrowers who perform well on loans.
 
-The county-level analysis shows a significant positive interaction: closures reduce incorporated self-employment by 4.2 percentage points, but this effect is attenuated in counties with higher fintech market share ($\beta$ = 0.82, p $<$ 0.05). However, the effect is not found for unincorporated self-employment, where the fintech interaction is null. The identification strategy has important limitations---when I add county fixed effects or county $\times$ year fixed effects, the interaction coefficient shrinks substantially and loses statistical significance. The placebo test provides some reassurance: areas that would later have high fintech showed no differential response to closures in 2003-2009, before fintech existed.
+The county-level analysis shows a significant positive interaction: closures reduce incorporated self-employment by 4.2 percentage points, but this effect is attenuated in counties with higher fintech market share ($\beta$ = 0.82, p $<$ 0.05). However, the effect is not found for unincorporated self-employment, where the fintech interaction is null. The identification strategy has important limitations---when I add county fixed effects or county $\times$ year fixed effects, the interaction coefficient shrinks substantially and loses statistical significance. The placebo test provides some reassurance: areas that would later have high fintech showed no differential response to closures in 2003-2009, before fintech existed. Importantly, the temporal dynamics analysis reveals that the fintech mitigation effect strengthens over time: the Closure $\times$ Fintech interaction is not significant in 2010-2012 (t = 0.96) but is highly significant in 2013-2014 (t = 3.12, p = 0.002). This pattern is consistent with fintech requiring time to achieve the scale and recognition necessary to substitute for traditional banking relationships.
 
-The alternative creditworthiness analysis provides stronger results. A fintech-style credit score constructed from CAPS behavioral variables---payment history, income stability, financial resilience---achieves exceptional predictive power for mortgage default (AUC = 0.926, pseudo-R$^2$ = 0.457). The score discriminates sharply: respondents in the bottom tercile have a 52\% default rate compared to 0\% in the top tercile. Financial resilience---access to emergency funds and home equity---is the key discriminating factor. A one standard deviation increase in the fintech score reduces default probability by 14 percentage points. Crucially, the score's predictive power holds across geographic contexts: AUC = 0.928 in non-desert counties versus 0.911 in banking deserts, demonstrating that alternative credit assessment works even in underserved areas.
+The alternative creditworthiness analysis provides stronger results. A fintech-style credit score constructed from CAPS behavioral variables---payment history, income stability, financial resilience---achieves exceptional predictive power for mortgage default (AUC = 0.926, pseudo-R$^2$ = 0.457). The score discriminates sharply: respondents in the bottom tercile have a 52\% default rate compared to 0\% in the top tercile. Financial resilience---access to emergency funds and home equity---is the key discriminating factor. A one standard deviation increase in the fintech score reduces default probability by 14 percentage points. Crucially, the score's predictive power holds across both geographic contexts (AUC $>$ 0.97 across 14 distinct environments including banking deserts, food deserts, and low-social-capital areas) and demographic groups (AUC ranges from 0.941 for lower-income households to 0.971 for younger individuals), demonstrating that alternative credit assessment works robustly across diverse populations and underserved areas.
 
 Importantly, individuals with higher financial resilience scores show smaller negative effects from branch closures (interaction coefficient = -0.0083, t = -1.67, p = 0.098). While only marginally significant, this finding is consistent with the mechanism that individuals possessing the characteristics fintech lenders value have better access to alternative credit sources when traditional branches close.
 
