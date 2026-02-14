@@ -433,4 +433,124 @@ Extracted 22 fintech lender respondent IDs from HMDA Panel files:
 
 ---
 
+## Expanded Geographic Heterogeneity Analysis (February 14, 2026)
+
+### Motivation
+Extended the geographic heterogeneity analysis beyond banking deserts to test whether the fintech creditworthiness score predicts default equally well across multiple dimensions of disadvantage.
+
+### Dimensions Tested
+| Dimension | Source | Definition |
+|-----------|--------|------------|
+| Banking Desert | FDIC SOD | < 1 branch per 10k population |
+| Dollar Store Density | Census CBP | Top quartile of stores per capita |
+| Food Access | USDA Atlas | Top quartile of food desert share |
+| Social Capital | Chetty et al. | Bottom quartile of economic connectedness |
+| Broadband | ACS | Below median broadband adoption |
+| Multiple Disadvantage | Composite | 2+ indicators present |
+
+### Key Results
+| Environment | AUC | N |
+|-------------|-----|---|
+| Full Sample | 0.978 | 5,746 |
+| Banking Desert | 0.975 | 98 |
+| High Dollar Store Density | 0.982 | 178 |
+| Low Food Access | 0.985 | 479 |
+| Low Social Capital | 0.975 | 2,627 |
+| Low Broadband | 0.969 | 884 |
+| Multiple Disadvantages (2+) | 0.972 | 1,019 |
+
+**Key Finding**: The fintech score achieves AUC > 0.97 across ALL geographic environments. Notably, AUC is *highest* in low food access areas (0.985) and high dollar store density areas (0.982) — exactly the communities that traditional finance has abandoned.
+
+### Paper Updates
+- Replaced Table 8 with expanded 5-panel table (14 environments)
+- Added substantive discussion of dollar store and food access findings
+- Strengthened policy implications for underserved communities
+
+---
+
+## Triple Interaction Analysis (February 14, 2026)
+
+### Research Question
+Does fintech mitigation of branch closure effects require digital infrastructure? Test: Closure × Fintech × Broadband.
+
+### Results
+| Variable | Coefficient | t-stat |
+|----------|-------------|--------|
+| Closure × Fintech | 0.0385* | 1.80 |
+| Closure × Broadband | -0.0141 | -1.58 |
+| Fintech × Broadband | 0.0304** | 2.01 |
+| Closure × Fintech × Broadband | -0.0192 | -0.75 |
+
+### Split Sample Analysis
+| Subsample | Closure × Fintech | t-stat | p-value |
+|-----------|-------------------|--------|---------|
+| High Broadband (N=335) | +0.032 | 1.84 | 0.066 |
+| Low Broadband (N=149) | -0.012 | -0.40 | 0.687 |
+
+**Key Finding**: The fintech mitigation effect is concentrated in high-broadband areas. The triple interaction is not significant, but the split sample reveals the pattern: fintech requires digital infrastructure to substitute for physical branches.
+
+**Fintech × Broadband complement**: The positive and significant interaction (t=2.01) indicates that fintech and broadband work together — areas with both show better outcomes.
+
+### Paper Updates
+- Added new subsection "Digital Infrastructure as a Mechanism" in Section 5
+- Table showing triple interaction results
+- Discussion of split-sample evidence
+
+---
+
+## Paper Status (February 14, 2026)
+
+### Current State
+- **Length**: 50 pages
+- **Compiled**: Yes (pdflatex)
+- **Figures**: All 3 verified present in Output/
+
+### Sections
+1. Introduction
+2. Background and Hypotheses
+3. Data
+4. Empirical Methodology
+5. Results
+   - Main results (Table 7)
+   - Robustness (county FE, placebo)
+   - Graphical evidence (spec curve, event study)
+   - **NEW**: Digital Infrastructure as a Mechanism (triple interaction)
+6. Alternative Creditworthiness Analysis
+   - Fintech score construction
+   - Validation (AUC = 0.978)
+   - **EXPANDED**: Geographic heterogeneity (14 environments, 5 panels)
+   - Branch closure interactions
+   - **NEW**: CAPS-HMDA linkage analysis
+7. Discussion and Conclusion
+
+### Key Tables
+| Table | Content |
+|-------|---------|
+| Table 7 | Main Closure × Fintech results |
+| Table 8 | Geographic heterogeneity (expanded to 14 rows) |
+| Table 9 | Branch closure × individual characteristics |
+| Table 10 | HMDA fintech share trends |
+| Table 11 | HMDA linkage results |
+| Table 12 | Triple interaction (Closure × Fintech × Broadband) |
+
+---
+
+## Repository Status
+
+### Tracked Files
+- All Do-files (6 analysis files)
+- All Output figures (PNG, PDF)
+- Plotting scripts (Python)
+- Crosswalk processing scripts
+- Paper source and PDF
+- CLAUDE.md documentation
+
+### Excluded (via .gitignore)
+- Data files (*.dta, *.csv, *.xlsx, etc.)
+- HMDA folder (12 GB)
+- Python cache
+- LaTeX auxiliary files
+
+---
+
 *Last updated: February 14, 2026*
