@@ -3,11 +3,22 @@
 *.csv
 *.xlsx
 *.xls
+*.json
+*.dat
+*.zip
+
+# Large data folders
+Data/HMDA/
 
 # Stata logs and temp files
 *.log
 *.smcl
 *.ster
+stata_output.txt
+
+# Python cache
+__pycache__/
+*.pyc
 
 # LaTeX auxiliary files
 *.aux
