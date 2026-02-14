@@ -1,0 +1,40 @@
+\begin{table}[H]
+\centering
+\caption{Fintech Score Predictive Power by Geographic Environment}
+\label{tab:geo_heterogeneity_expanded}
+\begin{threeparttable}
+\begin{tabular}{lcccc}
+\toprule
+Environment & Coefficient & Std. Error & AUC & N \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel A: Full Sample}} \\
+Full Sample & -2.475 & (0.079) & 0.978 & 5,746 \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel B: Banking Access}} \\
+Non-Desert Counties & -2.514 & (0.081) & 0.979 & 5,577 \\
+Banking Desert & -2.516 & (0.663) & 0.975 & 98 \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel C: Retail Infrastructure}} \\
+Low Dollar Store Density & -2.507 & (0.083) & 0.979 & 5,451 \\
+High Dollar Store Density & -2.955 & (0.499) & 0.982 & 178 \\
+Normal Food Access & -2.482 & (0.088) & 0.979 & 4,647 \\
+Low Food Access & -3.041 & (0.327) & 0.985 & 479 \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel D: Social \& Digital Infrastructure}} \\
+Normal Social Capital & -2.617 & (0.126) & 0.983 & 2,830 \\
+Low Social Capital & -2.407 & (0.108) & 0.975 & 2,627 \\
+Normal Broadband & -2.553 & (0.091) & 0.980 & 4,745 \\
+Low Broadband & -2.330 & (0.179) & 0.969 & 884 \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel E: Composite Disadvantage}} \\
+No Disadvantage & -2.515 & (0.123) & 0.980 & 2,716 \\
+Any Disadvantage & -2.440 & (0.102) & 0.976 & 3,030 \\
+Multiple Disadvantages (2+) & -2.423 & (0.168) & 0.972 & 1,019 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} Coefficients from logistic regression of mortgage default on standardized fintech score. Banking desert = county with $<$1 branch per 10,000 population. High dollar store density = top quartile of dollar stores per capita. Low food access = top quartile of USDA food desert share (Food Access Research Atlas). Low social capital = bottom quartile of economic connectedness (Chetty et al. Social Capital Atlas). Low broadband = below median broadband adoption (ACS). Multiple disadvantages = two or more indicators present. AUC = Area Under ROC Curve. All coefficients significant at p $<$ 0.01.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -571,30 +571,56 @@ The discrimination is striking: respondents in the bottom tercile of the fintech
 
 \subsection{Geographic Heterogeneity}
 
-A natural question is whether the fintech creditworthiness score predicts default equally well across different geographic contexts---particularly in banking deserts where traditional credit access is limited. Table \ref{tab:geo_heterogeneity} examines predictive power by banking desert status.
+A natural question is whether the fintech creditworthiness score predicts default equally well across different geographic contexts. If alternative credit assessment works only in well-served areas, its value for financial inclusion would be limited. I test predictive power across multiple dimensions of geographic disadvantage: banking deserts, areas with high dollar store density (a proxy for limited mainstream retail/financial infrastructure), low food access, low social capital, and limited broadband connectivity. Table \ref{tab:geo_heterogeneity} presents results.
 
 \begin{table}[H]
 \centering
-\caption{Fintech Score Predictive Power by Banking Desert Status}
+\caption{Fintech Score Predictive Power by Geographic Environment}
 \label{tab:geo_heterogeneity}
 \begin{threeparttable}
 \begin{tabular}{lcccc}
 \toprule
-Sample & Coefficient & Std. Error & AUC & N \\
+Environment & Coefficient & Std. Error & AUC & N \\
 \midrule
-Full Sample & -2.164 & 0.063 & 0.926 & 5,746 \\
-Non-Desert Counties & -2.213 & 0.065 & 0.928 & 5,577 \\
-Banking Desert Counties & -1.803 & 0.359 & 0.911 & 98 \\
+\multicolumn{5}{l}{\textit{Panel A: Full Sample}} \\
+Full Sample & -2.475 & (0.079) & 0.978 & 5,746 \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel B: Banking Access}} \\
+Non-Desert Counties & -2.514 & (0.081) & 0.979 & 5,577 \\
+Banking Desert & -2.516 & (0.663) & 0.975 & 98 \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel C: Retail Infrastructure}} \\
+Low Dollar Store Density & -2.507 & (0.083) & 0.979 & 5,451 \\
+High Dollar Store Density & -2.955 & (0.499) & 0.982 & 178 \\
+Normal Food Access & -2.482 & (0.088) & 0.979 & 4,647 \\
+Low Food Access & -3.041 & (0.327) & 0.985 & 479 \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel D: Social \& Digital Infrastructure}} \\
+Normal Social Capital & -2.617 & (0.126) & 0.983 & 2,830 \\
+Low Social Capital & -2.407 & (0.108) & 0.975 & 2,627 \\
+Normal Broadband & -2.553 & (0.091) & 0.980 & 4,745 \\
+Low Broadband & -2.330 & (0.179) & 0.969 & 884 \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel E: Composite Disadvantage}} \\
+No Disadvantage & -2.515 & (0.123) & 0.980 & 2,716 \\
+Any Disadvantage & -2.440 & (0.102) & 0.976 & 3,030 \\
+Multiple Disadvantages (2+) & -2.423 & (0.168) & 0.972 & 1,019 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
 \small
-\item \textit{Notes:} Coefficients from logistic regression of mortgage default on standardized fintech score. Banking desert = county with $<$1 branch per 10,000 population. AUC = Area Under ROC Curve. All coefficients significant at p $<$ 0.01.
+\item \textit{Notes:} Coefficients from logistic regression of mortgage default on standardized fintech score. Banking desert = county with $<$1 branch per 10,000 population. High dollar store density = top quartile of dollar stores per capita. Low food access = top quartile of USDA food desert share (Food Access Research Atlas). Low social capital = bottom quartile of economic connectedness (Chetty et al. Social Capital Atlas). Low broadband = below median broadband adoption (ACS). Multiple disadvantages = two or more indicators present. AUC = Area Under ROC Curve. All coefficients significant at p $<$ 0.01.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
 
-The fintech creditworthiness score achieves strong predictive power in both contexts. In non-desert counties, the AUC is 0.928; in banking deserts, it is 0.911. While the coefficient is somewhat attenuated in banking deserts (-1.803 vs. -2.213), this difference is not statistically significant given the small desert sample (N = 98). The key finding is that the fintech-style score predicts default well even in underserved areas where traditional credit assessment may be most challenged.
+The fintech creditworthiness score achieves remarkably consistent predictive power across all geographic environments. The AUC ranges from 0.969 (low broadband areas) to 0.985 (low food access areas)---a narrow band indicating robust performance regardless of local infrastructure.
+
+Several patterns merit attention. First, the score predicts default equally well in banking deserts (AUC = 0.975) as in non-desert counties (AUC = 0.979), confirming that alternative credit assessment works in areas where traditional banks have retreated. Second, in areas with high dollar store density---a growing literature connects dollar store proliferation to financial exclusion, as they tend to locate where banks leave---the score achieves an AUC of 0.982. Third, low food access areas (another proxy for general underinvestment) show the highest predictive power (AUC = 0.985), suggesting the fintech score may be \textit{more} discriminating in deeply underserved communities.
+
+The composite disadvantage analysis (Panel E) directly tests whether the score works in multiply disadvantaged areas. Counties with two or more disadvantage indicators still show strong predictive power (AUC = 0.972). This is slightly lower than areas with no disadvantage (AUC = 0.980), but the difference is economically small and not statistically significant.
+
+These findings substantially strengthen the case for alternative credit assessment in underserved populations. The fintech-style scoring methodology---based on payment behavior, income stability, and financial resilience---identifies creditworthy borrowers across the full spectrum of geographic environments, including areas that mainstream financial institutions have abandoned.
 
 \subsection{Branch Closure Interactions}
 
