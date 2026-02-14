@@ -255,3 +255,182 @@ Maps CAPS variables to fintech alternative credit scoring domains:
 4. Open `02_regression_analysis.do`
 5. Modify outcome/control variable names
 6. Run analysis
+
+---
+
+## Alternative Creditworthiness Research Direction (February 2026)
+
+### Current Paper Status
+The current paper tests county-level moderation (does fintech presence attenuate branch closure effects?). Results:
+- Baseline: Significant interaction (β = 0.82, p < 0.05)
+- With county FE: Coefficient drops to 0.28, loses significance
+- Sample: N = 484 (147 individuals, 59 counties)
+- **Assessment**: Results are fragile due to identification challenges
+
+### Proposed Pivot: Individual-Level Fintech Creditworthiness
+Instead of testing county-level moderators, develop an individual-level "fintech-style credit score" using CAPS behavioral variables.
+
+**Core Insight**: CAPS has rich individual-level variables (payment history, income stability, savings, AFS usage) that mimic what fintech lenders actually use for alternative scoring. This approach:
+1. Tests individual-level mechanisms (do characteristics fintech values predict better outcomes?)
+2. Does NOT require fintech penetration to be exogenous
+3. Uses geographic data as environmental context rather than key explanatory variable
+
+### Research Design
+
+**Step 1: Construct Fintech Creditworthiness Index**
+- Payment Behavior Index (40% weight): utility payments, bill collectors, bankruptcy
+- Income Stability Index (25%): job loss, income volatility, employment tenure
+- Financial Resilience Index (15%): savings, emergency fund, health insurance
+- Debt Burden Index (10%): DTI, housing cost ratio
+- Other (10%): stability, education, AFS avoidance
+
+**Step 2: Validate Against Loan Outcomes**
+- Outcome: `default_90` (90+ day mortgage delinquency)
+- Compare predictive power: Fintech score vs. traditional DTI/LTV
+- Test: Does fintech score add predictive power? (likelihood ratio test)
+- Measure: AUC comparison across scoring methods
+
+**Step 3: Geographic Heterogeneity Tests**
+- Is predictive advantage of fintech score stronger in banking deserts?
+- Is predictive advantage stronger in high-fintech penetration areas? (revealed preference)
+- Is predictive advantage stronger in high-broadband areas? (digital access enabled)
+
+**Step 4: Branch Closure Integration**
+- Key test: Do individuals with high fintech scores experience smaller self-employment losses from branch closures?
+- Specification: `Y_it = β₁(Closure) + β₂(Closure × FintechScore_individual) + FE`
+- This is a micro-level test of the mechanism
+
+### Why This Is Stronger
+| Current Approach | Alternative Approach |
+|------------------|---------------------|
+| County-level moderators | Individual-level predictors |
+| Requires fintech penetration exogeneity | Does not require exogeneity |
+| Tests "does fintech area help?" | Tests "do fintech-valued characteristics predict?" |
+| N = 484, fragile identification | Uses full CAPS sample |
+| Geographic data is key variable | Geographic data is context |
+
+### Do-File
+**File**: `Do-files/05_fintech_creditworthiness_analysis.do`
+
+Sections:
+1. Variable discovery (run `lookfor` commands)
+2. Predictor variable construction (8 domains)
+3. Composite index construction (4 approaches: weighted, simple, PCA, payment-focused)
+4. Validation against loan outcomes (logit, AUC, LR tests)
+5. Geographic heterogeneity (banking deserts, fintech penetration, broadband)
+6. Branch closure integration (individual score × closure interaction)
+7. Credit expansion analysis (misclassification rates)
+
+### Next Steps
+1. [x] Run variable discovery section to identify exact CAPS variable names
+2. [x] Update variable names in do-file based on discovery
+3. [x] Run analysis and assess fintech score predictive power
+4. [x] Write up results for paper revision
+
+### Key Results (February 14, 2026)
+- **AUC = 0.926** - Exceptional predictive power for mortgage default
+- **Pseudo R² = 0.457** - Very high for logit model
+- **Default by tercile**: Bottom 33% = 52%, Middle = 9.4%, Top 33% = 0%
+- **Marginal effect**: 1 SD increase → 14 pp reduction in default probability
+- **Geographic heterogeneity**: AUC = 0.928 (non-desert) vs 0.911 (banking desert)
+- **Branch closure × Resilience interaction**: -0.0083 (t = -1.67, p = 0.098) - marginally significant buffer effect
+- **Branch closure × Emergency Fund**: -0.039 (t = -1.47) - protective but not significant
+- Results added to paper as new Section 6 (now 44 pages)
+
+### Key Hypothesis
+If fintech-style scoring captures creditworthy borrowers that traditional metrics miss:
+- Fintech score should predict default better than DTI alone
+- Predictive advantage should be strongest in banking deserts (where soft info lost)
+- High-scoring individuals should be more resilient to branch closures
+
+---
+
+## CAPS-HMDA Linkage Extension (February 14, 2026)
+
+### Research Question
+Do individuals with high fintech creditworthiness scores actually obtain fintech mortgage credit, especially when traditional bank branches close?
+
+### Files Created
+| File | Purpose |
+|------|---------|
+| `Paper/CAPS_HMDA_Research_Design.md` | Full research design document |
+| `Do-files/06_caps_hmda_linkage.do` | Stata analysis do-file |
+| `Scripts/process_hmda_fintech.py` | Python script for large HMDA file processing |
+
+### Data Requirements
+1. **HMDA LAR Data** (2010-2014): Download from https://ffiec.cfpb.gov/data-browser/
+2. **Tract-ZIP Crosswalk**: Download from https://www.huduser.gov/portal/datasets/usps_crosswalk.html
+3. **Fuster Fintech Classification**: Already have in `Data/Fintech_Classification/`
+
+### Alternative Approach Results (Using County-Level Data)
+Without raw HMDA data, created synthetic "fintech access" measure = Individual Score × County Fintech Share
+
+| Test | Result |
+|------|--------|
+| Closure × Fintech Score | -0.00501 (t = -1.31) |
+| Interpretation | Negative (buffering) but not significant |
+
+### Key Insight
+The individual-level fintech score interaction (-0.0050) is similar in magnitude to the resilience index interaction (-0.0083), suggesting the composite score captures the relevant protective characteristics.
+
+### HMDA Data Processing - COMPLETE
+
+#### Downloaded Data
+| File | Size | Status |
+|------|------|--------|
+| hmda_2010.zip | 1.1 GB | Downloaded |
+| hmda_2012.zip | 1.3 GB | Downloaded |
+| hmda_2013.zip | 1.2 GB | Downloaded |
+| hmda_2014.zip | 823 MB | Downloaded |
+| panel_2010-2014.dat | 55 MB | Downloaded |
+| **Total** | **~4.5 GB** | Complete |
+
+Location: `Data/HMDA/LAR/` and `Data/HMDA/panel/`
+
+#### RSSD-to-Respondent ID Mapping
+Extracted 22 fintech lender respondent IDs from HMDA Panel files:
+- Quicken Loans: `7197000003`
+- Guaranteed Rate: `36-4327855`
+- LoanDepot: `26-4599244`
+- Movement Mortgage: `26-0595342`
+- And 18 others (see `Data/HMDA/fintech_respondent_ids.txt`)
+
+#### Processing Results
+| Year | Total Loans | Fintech Loans | Fintech Share |
+|------|-------------|---------------|---------------|
+| 2010 | 7,339,586 | 238,830 | 3.25% |
+| 2012 | 9,209,049 | 522,992 | 5.68% |
+| 2013 | 8,089,135 | 590,114 | 7.30% |
+| 2014 | 5,466,750 | 487,133 | 8.91% |
+
+**Validation**: Correlation with Fuster county-level data = 0.84
+
+#### Output Files
+| File | Description |
+|------|-------------|
+| `Data/HMDA/hmda_fintech_tract_year.csv` | 281,747 tract-year observations |
+| `Data/HMDA/hmda_fintech_county_year.csv` | 12,851 county-year observations |
+| `Data/HMDA/hmda_fintech_zip_year.csv` | ZIP-year level for CAPS merging |
+| `Data/HMDA/fintech_lender_mapping.csv` | RSSD to respondent_id mapping |
+
+#### Implementation Status
+1. ~~Download HMDA LAR files (2010-2014)~~ ✓ Complete (4.4 GB)
+2. ~~Download HMDA Panel files for RSSD mapping~~ ✓ Complete
+3. ~~Extract fintech respondent IDs~~ ✓ Complete (22 IDs)
+4. ~~Process HMDA and flag fintech loans~~ ✓ Complete
+5. ~~Aggregate to county/ZIP level~~ ✓ Complete
+6. ~~Merge with CAPS and run analysis~~ ✓ Complete (Python)
+
+#### Analysis Results
+| Model | Coefficient | t-stat | p-value | N |
+|-------|-------------|--------|---------|---|
+| Closure × HMDA Share | +0.00479 | 1.92 | 0.054 | 10,368 |
+| Closure × Fuster Share | +0.00114 | 0.37 | 0.710 | 13,027 |
+
+**Key Finding**: The HMDA-based interaction is **marginally positive** (t = 1.92), opposite of expected buffering. This suggests fintech presence does NOT mitigate branch closure effects on self-employment.
+
+**Interpretation**: Fintech lenders may enter areas where traditional banks are leaving, but they don't effectively substitute for relationship lending that supports small business formation. This is consistent with fintech's focus on standardized mortgage products rather than small business lending.
+
+---
+
+*Last updated: February 14, 2026*
