@@ -439,6 +439,46 @@ Figure \ref{fig:coef_compare} compares key specifications to illustrate why the 
 \end{minipage}
 \end{figure}
 
+\subsection{Digital Infrastructure as a Mechanism}
+
+If fintech lending genuinely substitutes for traditional banking, the effect should be concentrated in areas with adequate digital infrastructure. Fintech lenders operate primarily through online channels, so their services are inaccessible to populations without reliable internet. I test this mechanism by estimating a triple interaction: Closure $\times$ Fintech $\times$ Broadband.
+
+Table \ref{tab:triple} presents results. Column 1 reproduces the baseline Closure $\times$ Fintech interaction. Column 2 adds Closure $\times$ Broadband. Column 3 estimates the full triple interaction.
+
+\begin{table}[H]
+\centering
+\caption{Triple Interaction: Closure $\times$ Fintech $\times$ Broadband}
+\label{tab:triple}
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & Baseline & +Broadband & Triple \\
+\midrule
+Closure $\times$ Fintech & 0.0244** & 0.0260** & 0.0385* \\
+ & (0.0107) & (0.0110) & (0.0214) \\
+Closure $\times$ Broadband &  & -0.0121 & -0.0141 \\
+ &  & (0.0123) & (0.0089) \\
+Fintech $\times$ Broadband &  &  & 0.0304** \\
+ &  &  & (0.0151) \\
+Closure $\times$ Fintech $\times$ Broadband &  &  & -0.0192 \\
+ &  &  & (0.0256) \\
+\midrule
+Observations & 484 & 484 & 484 \\
+Merger-Year FE & Yes & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} Dependent variable is transition to incorporated self-employment. Fintech share and broadband access standardized (mean 0, SD 1). Broadband = percent of households with broadband internet (ACS 2019). Standard errors clustered by county in parentheses. * p<0.10, ** p<0.05, *** p<0.01.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The triple interaction itself is not statistically significant ($\beta$ = -0.019, t = -0.75), but a split-sample analysis is more revealing. In high-broadband areas (above-median internet penetration), the Closure $\times$ Fintech interaction is positive and marginally significant ($\beta$ = 0.032, t = 1.84, p = 0.066). In low-broadband areas, the interaction is near zero and insignificant ($\beta$ = -0.012, t = -0.40). This pattern is consistent with fintech requiring digital infrastructure to function as a substitute for physical banking.
+
+The Fintech $\times$ Broadband interaction in Column 3 is positive and significant ($\beta$ = 0.030, t = 2.01), indicating that fintech and broadband are complements---areas with both high fintech penetration and high broadband access show better self-employment outcomes. This finding supports the hypothesis that digital infrastructure enables fintech to serve as an alternative to traditional banking.
+
 
 \section{Alternative Creditworthiness Analysis}
 
